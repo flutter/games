@@ -33,9 +33,9 @@ The projects in this repository are divided into two broad categories:
 │   ├── card
 │   └── sidescroller
 └── samples
-	├── ads
-	├── multiplayer
-	└── ...
+    ├── ads
+    ├── multiplayer
+    └── ...
 ```
 
 
