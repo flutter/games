@@ -29,9 +29,9 @@ The projects in this repository are divided into two broad categories:
 ```text
 .
 ├── templates
-│   ├── game
-│   ├── card_game
-│   └── 2d_game
+│   ├── basic
+│   ├── card
+│   └── sidescroller
 └── samples
 	├── ads
 	├── multiplayer
