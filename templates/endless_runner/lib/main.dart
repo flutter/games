@@ -52,7 +52,6 @@ class MyGame extends StatelessWidget {
                 seedColor: palette.seed.color,
                 background: palette.backgroundMain.color,
               ),
-              useMaterial3: true,
               textTheme: GoogleFonts.pressStart2pTextTheme().apply(
                 bodyColor: palette.text.color,
                 displayColor: palette.text.color,
