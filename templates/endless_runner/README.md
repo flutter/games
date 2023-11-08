@@ -200,7 +200,7 @@ Settings are saved to local storage using the
 [`shared_preferences`](https://pub.dev/packages/shared_preferences)
 package.
 To change what preferences are saved and how, edit files in
-`lib/src/settings/persistence`.
+`lib/settings/persistence`.
 
 
 # Icon
