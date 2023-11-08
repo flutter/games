@@ -1,4 +1,4 @@
-A starter Flutter project with a minimal shell of a  game
+A starter Flutter project with a minimal shell of a game
 including the following features:
 
 - main menu screen
@@ -7,7 +7,7 @@ including the following features:
 - settings
 - sound
 
-You can jump directly into building your game in `lib/src/play_session/`.
+You can jump directly into building your game in `lib/play_session/`.
 
 When you're ready for things like ads, in-app purchases, achievements,
 analytics, crash reporting, and so on, 
@@ -20,7 +20,7 @@ at [flutter.dev/games](https://flutter.dev/games).
 Clone this project and run the following command in its root directory:
 
 ```terminal
-flutter create . --project-name game_template
+flutter create . --project-name basic
 ```
 
 This will create the necessary platform files, such as `ios/`, `android/`,
@@ -50,22 +50,22 @@ simulator/emulator or attach a mobile device.
 ## Code organization
 
 Code is organized in a loose and shallow feature-first fashion.
-In `lib/src`, you'll therefore find directories such as `audio`,
+In `lib/`, you'll therefore find directories such as `audio`,
 `main_menu` or `settings`. Nothing fancy, but usable.
 
-```
+```text
 lib
-├── src
-│   ├── app_lifecycle
-│   ├── audio
-│   ├── game_internals
-│   ├── level_selection
-│   ├── main_menu
-│   ├── play_session
-│   ├── player_progress
-│   ├── settings
-│   ├── style
-│   └── win_game
+├── app_lifecycle
+├── audio
+├── game_internals
+├── level_selection
+├── main_menu
+├── play_session
+├── player_progress
+├── settings
+├── style
+├── win_game
+│
 ├── main.dart
 └── router.dart
 ```
@@ -129,7 +129,7 @@ for this, and the [`rename`](https://pub.dev/packages/rename) tool
 ## Audio
 
 Audio is enabled by default and ready to go. You can modify code
-in `lib/src/audio/` to your liking.
+in `lib/audio/` to your liking.
 
 You can find some music
 tracks in `assets/music` — these are Creative Commons Attribution (CC-BY)
@@ -185,7 +185,7 @@ Settings are saved to local storage using the
 [`shared_preferences`](https://pub.dev/packages/shared_preferences)
 package.
 To change what preferences are saved and how, edit files in
-`lib/src/settings/persistence`.
+`lib/settings/persistence`.
 
 
 # Icon
@@ -195,7 +195,7 @@ To update the launcher icon, first change the files
 Then, run the following:
 
 ```bash
-flutter pub run flutter_launcher_icons:main
+dart run flutter_launcher_icons:main
 ```
 
 You can [configure](https://github.com/fluttercommunity/flutter_launcher_icons#book-guide)
