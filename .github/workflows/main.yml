@@ -1,4 +1,4 @@
-name: Main Branch CI
+name: Flutter Games CI
 
 # Declare default permissions as read only.
 permissions: read-all
@@ -20,7 +20,7 @@ jobs:
   flutter-tests:
     name: Test Flutter ${{ matrix.flutter_version }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
-    if: github.repository == 'flutter/samples'
+    if: github.repository == 'flutter/games'
     strategy:
       fail-fast: false
       matrix:
