@@ -143,7 +143,7 @@ for this, and the [`rename`](https://pub.dev/packages/rename) tool
 ## Audio
 
 Audio is enabled by default and ready to go. You can modify code
-in `lib/src/audio/` to your liking.
+in `lib/audio/` to your liking.
 
 You can find some music
 tracks in `assets/music` — these are Creative Commons Attribution (CC-BY)
