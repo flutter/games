@@ -3,8 +3,8 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:game_template/main.dart';
-import 'package:game_template/play_session/playing_card_widget.dart';
+import 'package:card/main.dart';
+import 'package:card/play_session/playing_card_widget.dart';
 
 void main() {
   testWidgets('smoke test', (tester) async {
