@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:endless_runner/flame_game/components/player.dart';
-
 import 'persistence/local_storage_player_progress_persistence.dart';
 import 'package:flutter/foundation.dart';
 
