@@ -9,6 +9,7 @@ flutter doctor -v
 
 declare -ar PROJECT_NAMES=(
     "templates/basic"
+    "templates/card"
 )
 
 ci_projects "stable" "${PROJECT_NAMES[@]}"
