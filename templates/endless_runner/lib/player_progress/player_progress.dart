@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:endless_runner/flame_game/components/player.dart';
+
 import 'persistence/local_storage_player_progress_persistence.dart';
 import 'package:flutter/foundation.dart';
 
@@ -7,20 +9,18 @@ import 'persistence/player_progress_persistence.dart';
 
 /// Encapsulates the player's progress.
 class PlayerProgress extends ChangeNotifier {
+  PlayerProgress({PlayerProgressPersistence? store})
+      : _store = store ?? LocalStoragePlayerProgressPersistence() {
+    getLatestFromStore();
+  }
+
   /// TODO: If needed, replace this with some other mechanism for saving
   ///       the player's progress. Currently, this uses the local storage
   ///       (i.e. NSUserDefaults on iOS, SharedPreferences on Android
   ///       or local storage on the web).
-  final PlayerProgressPersistence _store =
-      LocalStoragePlayerProgressPersistence();
+  final PlayerProgressPersistence _store;
 
   List<int> _levelsFinished = [];
-
-  /// Creates an instance of [PlayerProgress] backed by an injected
-  /// persistence [store].
-  PlayerProgress() {
-    getLatestFromStore();
-  }
 
   /// The times for the levels that the player has finished so far.
   List<int> get levels => _levelsFinished;
