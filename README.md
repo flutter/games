@@ -31,7 +31,7 @@ The projects in this repository are divided into two broad categories:
 ├── templates
 │   ├── basic
 │   ├── card
-│   └── sidescroller
+│   └── endless_runner
 └── samples
     ├── ads
     ├── multiplayer
