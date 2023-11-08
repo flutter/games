@@ -10,8 +10,6 @@ import 'package:flame_test/flame_test.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:endless_runner/main.dart';
-import 'package:go_router/go_router.dart';
-import 'package:nes_ui/nes_ui.dart';
 
 void main() {
   testWidgets('smoke test menus', (tester) async {
@@ -59,25 +57,20 @@ void main() {
       );
     },
     (game) async {
-      game.overlays.addEntry(GameScreen.backButtonKey, (context, game) {
-        return Positioned(
-          top: 20,
-          right: 10,
-          child: NesButton(
-            type: NesButtonType.normal,
-            onPressed: GoRouter.of(context).pop,
-            child: NesIcon(iconData: NesIcons.leftArrowIndicator),
-          ),
-        );
-      });
+      game.overlays.addEntry(
+        GameScreen.backButtonKey,
+        (context, game) => Container(),
+      );
       game.overlays.addEntry(
         GameScreen.winDialogKey,
         (context, game) => Container(),
       );
-      await game.ready();
+      await game.onLoad();
+      game.update(0);
       expect(game.children.length, 3);
-      expect(game.world.children.length, 3);
-      expect(game.camera.viewport.children.length, 1);
+      expect(game.world.children.length, 2);
+      expect(game.camera.viewport.children.length, 2);
+      expect(game.world.player.isLoading, isTrue);
     },
   );
 }
