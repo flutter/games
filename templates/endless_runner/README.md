@@ -30,7 +30,7 @@ at [flutter.dev/games](https://flutter.dev/games).
 Clone this project and run the following command in its root directory:
 
 ```terminal
-flutter create . --project-name game_template
+flutter create . --project-name endless_runner
 ```
 
 This will create the necessary platform files, such as `ios/`, `android/`,
