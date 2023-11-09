@@ -17,26 +17,6 @@ there are resources ready for you
 at [flutter.dev/games](https://flutter.dev/games).
 
 
-# Getting started
-
-Clone this project and run the following command in its root directory:
-
-```terminal
-flutter create . --project-name card
-```
-
-This will create the necessary platform files, such as `ios/`, `android/`,
-`web/`, `macos/`, `linux/` or `windows/`, depending on your installation of Flutter.
-
-After this, the game compiles and works out of the box. It comes with things
-like a main menu, a router, a settings screen, and audio.
-When building a new game, this is likely everything you first need.
-
-When you're ready to enable more advanced integrations, 
-there are recipes and codelabs for you ready at
-[flutter.dev/games](https://flutter.dev/games).
-
-
 # Development
 
 To run the app in debug mode:
@@ -60,7 +40,6 @@ lib
 ├── app_lifecycle
 ├── audio
 ├── game_internals
-├── level_selection
 ├── main_menu
 ├── play_session
 ├── player_progress
