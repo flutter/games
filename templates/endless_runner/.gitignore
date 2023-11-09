@@ -45,9 +45,3 @@ app.*.map.json
 
 .metadata
 pubspec.lock
-android/
-ios/
-linux/
-macos/
-windows/
-web/
