@@ -57,32 +57,16 @@ The projects in this repository are divided into two broad categories:
 2. `cd` into the project you are interested in. For example:
 
    ```shell
-   cd templates/card_game
+   cd templates/card
    ```
 
    (Alternatively, you can copy the contents of a project to somewhere else,
    and change to that directory.)
 
-3. Let Flutter create the platform subdirectories:
-
-   ```shell
-   flutter create .
-   ```
-
-   (If you have changed the name of the project's directory to something else,
-   you will need to tell the Flutter tool the original project name
-   with something like `flutter create --project-name card_game .`.).
-
-   <!-- 
-   Most projects in this repository do _not_ have their platform subdirectories
-   (such as `android/`, `ios/` or `web/`) included.
-   This mitigates bit rot and significantly reduces the size of the repository.
-   --> 
-
-4. (Optional) Rename the project with the 
+3. (Optional) Rename the project with the 
    [`rename` tool](https://pub.dev/packages/rename).
 
-5. Open the project in your favorite editor and enjoy.
+4. Open the project in your favorite editor and enjoy.
 
 
 ## Interested in contributing?
@@ -101,5 +85,4 @@ techniques for one of your own apps, try one of these resources:
 * [StackOverflow](https://stackoverflow.com/questions/tagged/flutter)
 
 If you run into a bug in one of the samples, please file an issue in the
-[`flutter/games` issue tracker](https://github.com/flutter/games/issues).
-
+[`flutter/flutter` issue tracker](https://github.com/flutter/flutter/issues).
