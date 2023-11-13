@@ -1,6 +1,6 @@
 # games
 
-[![Build Status](https://github.com/flutter/games/workflows/Main%20Branch%20CI/badge.svg)](https://github.com/flutter/games/actions?workflow=Main%20Branch%20CI)
+[![Build Status](https://github.com/flutter/games/actions/workflows/main.yml/badge.svg)](https://github.com/flutter/games/actions/workflows/main.yml)
 
 Home to the official code for the Flutter Casual Games Toolkit 
 and other Flutter gaming templates.
