@@ -12,6 +12,7 @@ declare -ar PROJECT_NAMES=(
     "templates/card"
     "templates/endless_runner"
     "samples/ads"
+    "samples/multiplayer"
 )
 
 ci_projects "stable" "${PROJECT_NAMES[@]}"
