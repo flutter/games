@@ -11,7 +11,6 @@ declare -ar PROJECT_NAMES=(
     "templates/basic"
     "templates/card"
     "templates/endless_runner"
-    "samples/ads"
     "samples/multiplayer"
 )
 
