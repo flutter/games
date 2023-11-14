@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "279016704934",
+    "project_id": "card-game-eea6d",
+    "storage_bucket": "card-game-eea6d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279016704934:android:88be1397c39d5ae110dd67",
+        "android_client_info": {
+          "package_name": "com.example.card"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj32JbbKHD2UgP8aoQRuEjkexEUzR1hXE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279016704934:android:de477079147d89de10dd67",
+        "android_client_info": {
+          "package_name": "com.example.game_template"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj32JbbKHD2UgP8aoQRuEjkexEUzR1hXE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
