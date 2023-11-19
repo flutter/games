@@ -18,7 +18,7 @@ The projects in this repository are divided into two broad categories:
 1. **Templates.** A small number of starting points for your game project.
    Templates are intended to give you a simple project structure
    on top of which you can build your game.
-   They differ to accomodate different game types, 
+   They differ to accommodate different game types, 
    from the simplest casual games through drag&drop board games
    to 2D platformers.
 
