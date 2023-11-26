@@ -3,8 +3,6 @@ import 'package:provider/provider.dart';
 
 typedef AppLifecycleStateNotifier = ValueNotifier<AppLifecycleState>;
 
-// TODO(filiph): use the new AppLifecycleListener class, e.g.
-//               https://kazlauskas.dev/flutter-app-lifecycle-listener-overview/
 class AppLifecycleObserver extends StatefulWidget {
   final Widget child;
 
@@ -14,8 +12,9 @@ class AppLifecycleObserver extends StatefulWidget {
   State<AppLifecycleObserver> createState() => _AppLifecycleObserverState();
 }
 
-class _AppLifecycleObserverState extends State<AppLifecycleObserver>
-    with WidgetsBindingObserver {
+class _AppLifecycleObserverState extends State<AppLifecycleObserver> {
+  late final AppLifecycleListener _appLifecycleListener;
+
   final ValueNotifier<AppLifecycleState> lifecycleListenable =
       ValueNotifier(AppLifecycleState.inactive);
 
@@ -40,19 +39,16 @@ class _AppLifecycleObserverState extends State<AppLifecycleObserver>
   }
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    lifecycleListenable.value = state;
-  }
-
-  @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
+    _appLifecycleListener.dispose();
     super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addObserver(this);
+    _appLifecycleListener = AppLifecycleListener(
+      onStateChange: (s) => lifecycleListenable.value = s,
+    );
   }
 }
