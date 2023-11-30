@@ -33,7 +33,6 @@ class HurtEffect extends Component with ParentIsA<Player> {
         ),
         ColorEffect(
           Colors.white,
-          const Offset(0.0, 0.9),
           EffectController(
             duration: effectTime / 8,
             alternate: true,
