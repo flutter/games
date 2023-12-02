@@ -38,6 +38,7 @@ class HurtEffect extends Component with ParentIsA<Player> {
             alternate: true,
             repeatCount: 2,
           ),
+          opacityTo: 0.9,
         ),
       ],
     );
