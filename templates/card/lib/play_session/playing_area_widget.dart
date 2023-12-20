@@ -49,9 +49,9 @@ class _PlayingAreaWidgetState extends State<PlayingAreaWidget> {
               ),
             ),
           ),
-          onWillAccept: _onDragWillAccept,
+          onWillAcceptWithDetails: _onDragWillAccept,
           onLeave: _onDragLeave,
-          onAccept: _onDragAccept,
+          onAcceptWithDetails: _onDragAccept,
         ),
       ),
     );
@@ -64,9 +64,9 @@ class _PlayingAreaWidgetState extends State<PlayingAreaWidget> {
     audioController.playSfx(SfxType.huhsh);
   }
 
-  void _onDragAccept(PlayingCardDragData data) {
-    widget.area.acceptCard(data.card);
-    data.holder.removeCard(data.card);
+  void _onDragAccept(DragTargetDetails<PlayingCardDragData> details) {
+    widget.area.acceptCard(details.data.card);
+    details.data.holder.removeCard(details.data.card);
     setState(() => isHighlighted = false);
   }
 
@@ -74,8 +74,7 @@ class _PlayingAreaWidgetState extends State<PlayingAreaWidget> {
     setState(() => isHighlighted = false);
   }
 
-  bool _onDragWillAccept(PlayingCardDragData? data) {
-    if (data == null) return false;
+  bool _onDragWillAccept(DragTargetDetails<PlayingCardDragData> details) {
     setState(() => isHighlighted = true);
     return true;
   }
