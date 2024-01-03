@@ -72,7 +72,7 @@ class FirestoreController {
     DocumentSnapshot<Map<String, dynamic>> snapshot,
     SnapshotOptions? options,
   ) {
-    final data = snapshot.data()?['cards'];
+    final data = snapshot.data()?['cards'] as List?;
 
     if (data == null) {
       _log.info('No data found on Firestore, returning empty list');
