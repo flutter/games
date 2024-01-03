@@ -18,7 +18,7 @@ class PlayingCard {
     return PlayingCard(
       CardSuit.values
           .singleWhere((e) => e.internalRepresentation == json['suit']),
-      json['value'],
+      json['value'] as int,
     );
   }
 
