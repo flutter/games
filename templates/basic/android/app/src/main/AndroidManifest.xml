@@ -19,7 +19,7 @@
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
               />
-            <!-- Specifies the version of the game template for tracking purposes. -->
+            <!-- Specifies the version of the game template to understand template usage. -->
             <meta-data
                 android:name="io.flutter.plugins.googlemobileads.FLUTTER_GAME_TEMPLATE_VERSION"
                 android:value="1.0.0"/>
