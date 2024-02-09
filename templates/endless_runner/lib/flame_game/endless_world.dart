@@ -47,6 +47,8 @@ class EndlessWorld extends World with TapCallbacks, HasGameReference {
   /// other parts of the code is interested in when the score is updated they
   /// can listen to it and act on the updated value.
   final scoreNotifier = ValueNotifier(0);
+  //無敵モードかどうかのbool
+  final invincibleNotifier = ValueNotifier(false);
   late final Player player;
   late final DateTime timeStarted;
   Vector2 get size => (parent as FlameGame).size;
@@ -130,11 +132,13 @@ class EndlessWorld extends World with TapCallbacks, HasGameReference {
     // When the world is mounted in the game we add a back button widget as an
     // overlay so that the player can go back to the previous screen.
     game.overlays.add(GameScreen.backButtonKey);
+    game.overlays.add(GameScreen.invincibleKey);
   }
 
   @override
   void onRemove() {
     game.overlays.remove(GameScreen.backButtonKey);
+    game.overlays.remove(GameScreen.invincibleKey);
   }
 
   /// Gives the player points, with a default value +1 points.
@@ -144,7 +148,12 @@ class EndlessWorld extends World with TapCallbacks, HasGameReference {
 
   /// Sets the player's score to 0 again.
   void resetScore() {
+    if (invincibleNotifier.value) return;
     scoreNotifier.value = 0;
+  }
+
+  void setInvincibleMode() {
+    invincibleNotifier.value = !invincibleNotifier.value;
   }
 
   /// [onTapDown] is called when the player taps the screen and then calculates

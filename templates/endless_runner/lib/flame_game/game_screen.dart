@@ -22,6 +22,8 @@ class GameScreen extends StatelessWidget {
 
   static const String winDialogKey = 'win_dialog';
   static const String backButtonKey = 'back_buttton';
+  //キーを追加
+  static const String invincibleKey = 'invincebleKey';
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,17 @@ class GameScreen extends StatelessWidget {
           audioController: audioController,
         ),
         overlayBuilderMap: {
+          invincibleKey: (BuildContext context, game) {
+            return Positioned(
+              top: 20,
+              right: 80,
+              child: NesButton(
+                type: NesButtonType.success,
+                onPressed: game.world.setInvincibleMode,
+                child: NesIcon(iconData: NesIcons.dartLang),
+              ),
+            );
+          },
           backButtonKey: (BuildContext context, EndlessRunner game) {
             return Positioned(
               top: 20,
