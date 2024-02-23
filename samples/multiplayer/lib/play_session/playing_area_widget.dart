@@ -31,21 +31,18 @@ class _PlayingAreaWidgetState extends State<PlayingAreaWidget> {
       child: AspectRatio(
         aspectRatio: 1 / 1,
         child: DragTarget<PlayingCardDragData>(
-          builder: (context, candidateData, rejectedData) => SizedBox(
-            height: 100,
-            child: Material(
-              color: isHighlighted ? palette.accept : palette.trueWhite,
-              shape: CircleBorder(),
-              clipBehavior: Clip.hardEdge,
-              child: InkWell(
-                splashColor: palette.redPen,
-                onTap: _onAreaTap,
-                child: StreamBuilder(
-                  // Rebuild the card stack whenever the area changes
-                  // (either by a player action, or remotely).
-                  stream: widget.area.allChanges,
-                  builder: (context, child) => _CardStack(widget.area.cards),
-                ),
+          builder: (context, candidateData, rejectedData) => Material(
+            color: isHighlighted ? palette.accept : palette.trueWhite,
+            shape: CircleBorder(),
+            clipBehavior: Clip.hardEdge,
+            child: InkWell(
+              splashColor: palette.redPen,
+              onTap: _onAreaTap,
+              child: StreamBuilder(
+                // Rebuild the card stack whenever the area changes
+                // (either by a player action, or remotely).
+                stream: widget.area.allChanges,
+                builder: (context, child) => _CardStack(widget.area.cards),
               ),
             ),
           ),

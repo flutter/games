@@ -29,13 +29,11 @@ class _BoardWidgetState extends State<BoardWidget> {
       children: [
         Padding(
           padding: const EdgeInsets.all(10),
-          child: Wrap(
-            alignment: WrapAlignment.center,
-            spacing: 20,
-            runSpacing: 20,
+          child: Row(
             children: [
-              PlayingAreaWidget(boardState.areaOne),
-              PlayingAreaWidget(boardState.areaTwo),
+              Expanded(child: PlayingAreaWidget(boardState.areaOne)),
+              SizedBox(width: 20),
+              Expanded(child: PlayingAreaWidget(boardState.areaTwo)),
             ],
           ),
         ),
