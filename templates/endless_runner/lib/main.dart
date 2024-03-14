@@ -50,7 +50,7 @@ class MyGame extends StatelessWidget {
             theme: flutterNesTheme().copyWith(
               colorScheme: ColorScheme.fromSeed(
                 seedColor: palette.seed.color,
-                background: palette.backgroundMain.color,
+                surface: palette.backgroundMain.color,
               ),
               textTheme: GoogleFonts.pressStart2pTextTheme().apply(
                 bodyColor: palette.text.color,
