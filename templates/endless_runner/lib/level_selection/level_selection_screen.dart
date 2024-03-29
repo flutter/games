@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
 import '../player_progress/player_progress.dart';
-import '../style/wobbly_button.dart';
 import '../style/palette.dart';
+import '../style/wobbly_button.dart';
 import 'levels.dart';
 
 class LevelSelectionScreen extends StatelessWidget {
@@ -40,7 +40,7 @@ class LevelSelectionScreen extends StatelessWidget {
                     type: NesButtonType.normal,
                     child: NesIcon(iconData: NesIcons.questionMark),
                     onPressed: () {
-                      NesDialog.show(
+                      NesDialog.show<void>(
                         context: context,
                         builder: (_) => const InstructionsDialog(),
                       );

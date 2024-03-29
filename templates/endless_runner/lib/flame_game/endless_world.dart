@@ -1,17 +1,17 @@
 import 'dart:math';
 
-import '../level_selection/levels.dart';
-import '../player_progress/player_progress.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
-import 'components/point.dart';
-import 'game_screen.dart';
+import '../level_selection/levels.dart';
+import '../player_progress/player_progress.dart';
 import 'components/obstacle.dart';
 import 'components/player.dart';
+import 'components/point.dart';
+import 'game_screen.dart';
 
 /// The world is where you place all the components that should live inside of
 /// the game, like the player, enemies, obstacles and points for example.

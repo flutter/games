@@ -4,10 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nes_ui/nes_ui.dart';
 import 'package:provider/provider.dart';
 
-import 'router.dart';
 import 'app_lifecycle/app_lifecycle.dart';
 import 'audio/audio_controller.dart';
 import 'player_progress/player_progress.dart';
+import 'router.dart';
 import 'settings/settings.dart';
 import 'style/palette.dart';
 
