@@ -32,12 +32,12 @@ class _BoardWidgetState extends State<BoardWidget> {
           child: Row(
             children: [
               Expanded(child: PlayingAreaWidget(boardState.areaOne)),
-              SizedBox(width: 20),
+              const SizedBox(width: 20),
               Expanded(child: PlayingAreaWidget(boardState.areaTwo)),
             ],
           ),
         ),
-        PlayerHandWidget(),
+        const PlayerHandWidget(),
       ],
     );
   }
