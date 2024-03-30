@@ -3,10 +3,10 @@ import 'package:flame/components.dart';
 import 'package:flutter/animation.dart';
 
 import '../../audio/sounds.dart';
-import '../endless_runner.dart';
-import '../endless_world.dart';
 import '../effects/hurt_effect.dart';
 import '../effects/jump_effect.dart';
+import '../endless_runner.dart';
+import '../endless_world.dart';
 import 'obstacle.dart';
 import 'point.dart';
 

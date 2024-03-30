@@ -5,9 +5,9 @@ import 'package:provider/provider.dart';
 import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
 import '../settings/settings.dart';
-import '../style/wobbly_button.dart';
 import '../style/palette.dart';
 import '../style/responsive_screen.dart';
+import '../style/wobbly_button.dart';
 
 class MainMenuScreen extends StatelessWidget {
   const MainMenuScreen({super.key});

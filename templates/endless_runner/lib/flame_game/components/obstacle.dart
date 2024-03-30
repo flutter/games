@@ -43,14 +43,11 @@ class Obstacle extends SpriteComponent with HasWorldReference<EndlessWorld> {
         ? const [ObstacleType.small, ObstacleType.tall, ObstacleType.wide]
         : const [ObstacleType.small, ObstacleType.wide];
     final obstacleType = values.random(random);
-    switch (obstacleType) {
-      case ObstacleType.small:
-        return Obstacle.small(position: position);
-      case ObstacleType.tall:
-        return Obstacle.tall(position: position);
-      case ObstacleType.wide:
-        return Obstacle.wide(position: position);
-    }
+    return switch (obstacleType) {
+      ObstacleType.small => Obstacle.small(position: position),
+      ObstacleType.tall => Obstacle.tall(position: position),
+      ObstacleType.wide => Obstacle.wide(position: position),
+    };
   }
 
   final Vector2 _srcSize;
