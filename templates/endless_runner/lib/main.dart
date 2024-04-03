@@ -57,9 +57,7 @@ class MyGame extends StatelessWidget {
                 displayColor: palette.text.color,
               ),
             ),
-            routeInformationProvider: router.routeInformationProvider,
-            routeInformationParser: router.routeInformationParser,
-            routerDelegate: router.routerDelegate,
+            routerConfig: router,
           );
         }),
       ),
