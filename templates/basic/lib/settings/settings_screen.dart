@@ -47,7 +47,7 @@ class SettingsScreen extends StatelessWidget {
               builder: (context, soundsOn, child) => _SettingsLine(
                 'Sound FX',
                 Icon(soundsOn ? Icons.graphic_eq : Icons.volume_off),
-                onSelected: () => settings.toggleSoundsOn(),
+                onSelected: settings.toggleSoundsOn,
               ),
             ),
             ValueListenableBuilder<bool>(
@@ -55,7 +55,7 @@ class SettingsScreen extends StatelessWidget {
               builder: (context, musicOn, child) => _SettingsLine(
                 'Music',
                 Icon(musicOn ? Icons.music_note : Icons.music_off),
-                onSelected: () => settings.toggleMusicOn(),
+                onSelected: settings.toggleMusicOn,
               ),
             ),
             _SettingsLine(
