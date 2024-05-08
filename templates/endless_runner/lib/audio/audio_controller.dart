@@ -250,7 +250,7 @@ class AudioController {
       _musicPlayer.resume();
     } catch (e) {
       // Sometimes, resuming fails with an "Unexpected" error.
-      _log.severe("Error resuming music", e);
+      _log.severe('Error resuming music', e);
       // Try starting the song from scratch.
       _playCurrentSongInPlaylist();
     }

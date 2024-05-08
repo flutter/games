@@ -15,10 +15,10 @@ dependencies:
 
   async: ^2.11.0
   audioplayers: ^6.0.0
-  go_router: ^13.2.0
+  go_router: ^14.0.0
   logging: ^1.2.0
   provider: ^6.1.2
-  shared_preferences: ^2.2.2
+  shared_preferences: ^2.2.3
 
 dev_dependencies:
   flutter_lints: ^3.0.0

@@ -27,7 +27,7 @@ final router = GoRouter(
         GoRoute(
             path: 'play',
             pageBuilder: (context, state) => buildMyTransition<void>(
-                  key: ValueKey('play'),
+                  key: const ValueKey('play'),
                   color: context.watch<Palette>().backgroundLevelSelection,
                   child: const LevelSelectionScreen(
                     key: Key('level selection'),
@@ -41,7 +41,7 @@ final router = GoRouter(
                   final level =
                       gameLevels.singleWhere((e) => e.number == levelNumber);
                   return buildMyTransition<void>(
-                    key: ValueKey('level'),
+                    key: const ValueKey('level'),
                     color: context.watch<Palette>().backgroundPlaySession,
                     child: PlaySessionScreen(
                       level,
@@ -67,7 +67,7 @@ final router = GoRouter(
                   final score = map['score'] as Score;
 
                   return buildMyTransition<void>(
-                    key: ValueKey('won'),
+                    key: const ValueKey('won'),
                     color: context.watch<Palette>().backgroundPlaySession,
                     child: WinGameScreen(
                       score: score,

@@ -83,8 +83,8 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                   ),
                   const Spacer(),
                   // The actual UI of the game.
-                  BoardWidget(),
-                  Text("Drag cards to the two areas above."),
+                  const BoardWidget(),
+                  const Text('Drag cards to the two areas above.'),
                   const Spacer(),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -128,7 +128,7 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
     final firestore = context.read<FirebaseFirestore?>();
     if (firestore == null) {
       _log.warning("Firestore instance wasn't provided. "
-          "Running without _firestoreController.");
+          'Running without _firestoreController.');
     } else {
       _firestoreController = FirestoreController(
         instance: firestore,

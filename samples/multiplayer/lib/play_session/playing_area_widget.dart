@@ -33,7 +33,7 @@ class _PlayingAreaWidgetState extends State<PlayingAreaWidget> {
         child: DragTarget<PlayingCardDragData>(
           builder: (context, candidateData, rejectedData) => Material(
             color: isHighlighted ? palette.accept : palette.trueWhite,
-            shape: CircleBorder(),
+            shape: const CircleBorder(),
             clipBehavior: Clip.hardEdge,
             child: InkWell(
               splashColor: palette.redPen,
