@@ -1,4 +1,3 @@
-import 'package:endless_runner/level_selection/instructions_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nes_ui/nes_ui.dart';
@@ -9,6 +8,7 @@ import '../audio/sounds.dart';
 import '../player_progress/player_progress.dart';
 import '../style/palette.dart';
 import '../style/wobbly_button.dart';
+import 'instructions_dialog.dart';
 import 'levels.dart';
 
 class LevelSelectionScreen extends StatelessWidget {
