@@ -1,0 +1,44 @@
+#include <iostream>
+#include <Windows.h>
+#include <time.h>
+
+const double GRAVITY = 9.8;
+double playerPositionY = 0.0;
+double playerVelocityY = 0.0;
+int jumpTiming;
+
+void animate()
+{
+    std::chrono::high_resolution_clock::time_point t = std::chrono::system_clock::now();
+
+    // Update the player's position based on the velocity and time passed.
+    playerPositionY += playerVelocityY * std::chrono::duration_cast<std::chrono::milliseconds>(t - jumpTiming).count();
+
+    // If the player is in the air, update their velocity accordingly.
+    if (playerPositionY > 0.0)
+    {
+        playerVelocityY -= GRAVITY * std::chrono::duration_cast<std::chrono::milliseconds>(t - jumpTiming).count();
+    }
+
+    // Check if the player has landed.
+    if (playerPositionY <= 0.0)
+    {
+        // Reset the player's velocity to set them up for a new jump later.
+        playerVelocityY = 0.0;
+    }
+
+    // Output the player's current position and velocity to the console.
+    std::cout << "Position: " << playerPositionY << std::endl;
+    std::cout << "Velocity: " << playerVelocityY << std::endl;
+}
+
+void input()
+{
+    // Wait for the player to press a key.
+    if (WaitForSingleObject(hConsole, INFINITE) == WAIT_TIMEOUT)
+    {
+        // If the key is the 'space' key, trigger a jump.
+        if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+        {
+            // Store the current time so we can calculate the player's upward motion.
+            jumpTiming = std::chrono￼Enter
