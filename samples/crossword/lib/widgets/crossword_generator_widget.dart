@@ -69,7 +69,8 @@ class CrosswordGeneratorWidget extends ConsumerWidget {
                         ? Theme.of(context).colorScheme.onPrimary
                         : Theme.of(context).colorScheme.primary,
                   ),
-                  child: const Text('•'), // https://www.compart.com/en/unicode/U+2022
+                  child: const Text(
+                      '•'), // https://www.compart.com/en/unicode/U+2022
                 ),
               ),
             );
