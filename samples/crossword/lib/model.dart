@@ -90,7 +90,10 @@ abstract class CrosswordWord
   static int locationComparator(CrosswordWord a, CrosswordWord b) {
     final compareRows = a.location.y.compareTo(b.location.y);
     final compareColumns = a.location.x.compareTo(b.location.x);
-    return switch (compareColumns) { 0 => compareRows, _ => compareColumns };
+    return switch (compareColumns) {
+      0 => compareRows,
+      _ => compareColumns,
+    };
   }
 
   /// Constructor for [CrosswordWord].
