@@ -14,7 +14,7 @@ class PlayerHandWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: ConstrainedBox(
-        constraints: BoxConstraints(minHeight: PlayingCardWidget.height),
+        constraints: const BoxConstraints(minHeight: PlayingCardWidget.height),
         child: ListenableBuilder(
           // Make sure we rebuild every time there's an update
           // to the player's hand.

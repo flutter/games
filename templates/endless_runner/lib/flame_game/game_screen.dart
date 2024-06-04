@@ -1,13 +1,13 @@
-import '../audio/audio_controller.dart';
-import 'endless_runner.dart';
-import '../level_selection/levels.dart';
-import '../player_progress/player_progress.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nes_ui/nes_ui.dart';
 import 'package:provider/provider.dart';
 
+import '../audio/audio_controller.dart';
+import '../level_selection/levels.dart';
+import '../player_progress/player_progress.dart';
+import 'endless_runner.dart';
 import 'game_win_dialog.dart';
 
 /// This widget defines the properties of the game screen.

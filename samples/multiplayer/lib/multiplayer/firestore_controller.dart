@@ -31,11 +31,11 @@ class FirestoreController {
       .withConverter<List<PlayingCard>>(
           fromFirestore: _cardsFromFirestore, toFirestore: _cardsToFirestore);
 
-  StreamSubscription? _areaOneFirestoreSubscription;
-  StreamSubscription? _areaTwoFirestoreSubscription;
+  StreamSubscription<void>? _areaOneFirestoreSubscription;
+  StreamSubscription<void>? _areaTwoFirestoreSubscription;
 
-  StreamSubscription? _areaOneLocalSubscription;
-  StreamSubscription? _areaTwoLocalSubscription;
+  StreamSubscription<void>? _areaOneLocalSubscription;
+  StreamSubscription<void>? _areaTwoLocalSubscription;
 
   FirestoreController({required this.instance, required this.boardState}) {
     // Subscribe to the remote changes (from Firestore).

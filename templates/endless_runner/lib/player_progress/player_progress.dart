@@ -1,15 +1,15 @@
 import 'dart:async';
 
-import 'persistence/local_storage_player_progress_persistence.dart';
 import 'package:flutter/foundation.dart';
 
+import 'persistence/local_storage_player_progress_persistence.dart';
 import 'persistence/player_progress_persistence.dart';
 
 /// Encapsulates the player's progress.
 class PlayerProgress extends ChangeNotifier {
   PlayerProgress({PlayerProgressPersistence? store})
       : _store = store ?? LocalStoragePlayerProgressPersistence() {
-    getLatestFromStore();
+    unawaited(getLatestFromStore());
   }
 
   /// TODO: If needed, replace this with some other mechanism for saving
@@ -27,7 +27,7 @@ class PlayerProgress extends ChangeNotifier {
   Future<void> getLatestFromStore() async {
     final levelsFinished = await _store.getFinishedLevels();
     if (!listEquals(_levelsFinished, levelsFinished)) {
-      _levelsFinished = _levelsFinished;
+      _levelsFinished = levelsFinished;
       notifyListeners();
     }
   }

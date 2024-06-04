@@ -1,6 +1,7 @@
-import '../endless_world.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+
+import '../endless_world.dart';
 
 /// The [Point] components are the components that the [Player] should collect
 /// to finish a level. The points are represented by Flame's mascot; Ember.

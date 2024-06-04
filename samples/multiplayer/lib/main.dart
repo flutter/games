@@ -48,7 +48,7 @@ void main() async {
   runApp(
     Provider.value(
       value: FirebaseFirestore.instance,
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
@@ -91,7 +91,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData.from(
               colorScheme: ColorScheme.fromSeed(
                 seedColor: palette.darkPen,
-                background: palette.backgroundMain,
+                surface: palette.backgroundMain,
               ),
               textTheme: TextTheme(
                 bodyMedium: TextStyle(color: palette.ink),
@@ -101,7 +101,7 @@ class MyApp extends StatelessWidget {
               // Make buttons more fun.
               filledButtonTheme: FilledButtonThemeData(
                 style: FilledButton.styleFrom(
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ),

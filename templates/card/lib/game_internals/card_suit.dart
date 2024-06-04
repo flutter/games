@@ -8,29 +8,17 @@ enum CardSuit {
 
   const CardSuit(this.internalRepresentation);
 
-  String get asCharacter {
-    switch (this) {
-      case CardSuit.spades:
-        return '♠';
-      case CardSuit.hearts:
-        return '♥';
-      case CardSuit.diamonds:
-        return '♦';
-      case CardSuit.clubs:
-        return '♣';
-    }
-  }
+  String get asCharacter => switch (this) {
+        CardSuit.spades => '♠',
+        CardSuit.hearts => '♥',
+        CardSuit.diamonds => '♦',
+        CardSuit.clubs => '♣'
+      };
 
-  CardSuitColor get color {
-    switch (this) {
-      case CardSuit.spades:
-      case CardSuit.clubs:
-        return CardSuitColor.black;
-      case CardSuit.hearts:
-      case CardSuit.diamonds:
-        return CardSuitColor.red;
-    }
-  }
+  CardSuitColor get color => switch (this) {
+        CardSuit.spades || CardSuit.clubs => CardSuitColor.black,
+        CardSuit.hearts || CardSuit.diamonds => CardSuitColor.red
+      };
 
   @override
   String toString() => asCharacter;

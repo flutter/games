@@ -38,7 +38,7 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
 
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
             theme: ThemeData.from(
               colorScheme: ColorScheme.fromSeed(
                 seedColor: palette.darkPen,
-                background: palette.backgroundMain,
+                surface: palette.backgroundMain,
               ),
               textTheme: TextTheme(
                 bodyMedium: TextStyle(color: palette.ink),
@@ -89,16 +89,14 @@ class MyApp extends StatelessWidget {
               // Make buttons more fun.
               filledButtonTheme: FilledButtonThemeData(
                 style: FilledButton.styleFrom(
-                  textStyle: TextStyle(
+                  textStyle: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                   ),
                 ),
               ),
             ),
-            routeInformationProvider: router.routeInformationProvider,
-            routeInformationParser: router.routeInformationParser,
-            routerDelegate: router.routerDelegate,
+            routerConfig: router,
           );
         }),
       ),
