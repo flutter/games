@@ -42,7 +42,9 @@ The projects in this repository are divided into two broad categories:
 ## How to use
 
 The easiest way to get any of the samples and templates from this repository
-is to install the `sample_downloader` tool and use it.
+is to install the 
+[`sample_downloader` tool](https://pub.dev/packages/sample_downloader)
+and use it.
 
 On the command line, while having the 
 [Flutter SDK installed](https://docs.flutter.dev/get-started/install),
