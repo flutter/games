@@ -41,6 +41,31 @@ The projects in this repository are divided into two broad categories:
 
 ## How to use
 
+The easiest way to get any of the samples and templates from this repository
+is to install the 
+[`sample_downloader` tool](https://pub.dev/packages/sample_downloader)
+and use it.
+
+On the command line, while having the 
+[Flutter SDK installed](https://docs.flutter.dev/get-started/install),
+run the following command:
+
+```shell
+dart pub global activate sample_downloader
+```
+
+Then, from any directory, run the newly installed tool
+and follow its instructions.
+
+```shell
+sample_downloader
+```
+
+### The manual way
+
+If, for any reason, you prefer not to use the `sample_downloader` tool,
+follow these steps.
+
 1. Clone this repository.
 
    To minimize download size, you can use a 
