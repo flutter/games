@@ -7,16 +7,16 @@ publish_to: 'none'
 version: 0.1.0
 
 environment:
-  sdk: ^3.2.0
+  sdk: ^3.3.0
 
 dependencies:
-  flame: ^1.17.0
+  flame: ^1.18.0
   flutter:
     sdk: flutter
 
-  audioplayers: ^5.2.1
-  flame_audio: ^2.10.0
-  go_router: ^14.0.0
+  audioplayers: ^6.0.0
+  flame_audio: ^2.10.2
+  go_router: ^14.2.0
   provider: ^6.1.2
   shared_preferences: ^2.2.3
   nes_ui: ^0.20.0
@@ -24,12 +24,12 @@ dependencies:
   logging: ^1.2.0
 
 dev_dependencies:
-  flame_test: ^1.16.1
-  flutter_lints: ^3.0.1
+  flame_test: ^1.16.2
+  flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: ^0.13.1
-  test: ^1.24.3
+  test: ^1.25.0
 
 flutter:
   uses-material-design: true
