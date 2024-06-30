@@ -39,20 +39,10 @@ void main() {
 
     expect(crossword.words.isNotEmpty, true);
     expect(crossword.words.length, 2);
-    expect(
-        crossword.words
-            .rebuild(
-              (b) => b.where((b) => b.direction == Direction.across),
-            )
-            .length,
+    expect(crossword.words.where((b) => b.direction == Direction.across).length,
         1);
     expect(
-        crossword.words
-            .rebuild(
-              (b) => b.where((b) => b.direction == Direction.down),
-            )
-            .length,
-        1);
+        crossword.words.where((b) => b.direction == Direction.down).length, 1);
     expect(crossword.characters.isNotEmpty, isTrue);
     expect(crossword.characters.length, 7);
     expect(

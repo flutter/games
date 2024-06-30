@@ -40,7 +40,6 @@ class CrosswordGeneratorWidget extends ConsumerWidget {
               ),
             ),
           );
-
           final explorationCell = ref.watch(
             workQueueProvider.select(
               (workQueueAsync) => workQueueAsync.when(
@@ -51,14 +50,14 @@ class CrosswordGeneratorWidget extends ConsumerWidget {
               ),
             ),
           );
+          final colorScheme = Theme.of(context).colorScheme;
 
           if (character != null) {
             return AnimatedContainer(
               duration: Durations.extralong1,
               curve: Curves.easeInOut,
-              color: explorationCell
-                  ? Theme.of(context).colorScheme.primary
-                  : Theme.of(context).colorScheme.onPrimary,
+              color:
+                  explorationCell ? colorScheme.primary : colorScheme.onPrimary,
               child: Center(
                 child: AnimatedDefaultTextStyle(
                   duration: Durations.extralong1,
@@ -66,8 +65,8 @@ class CrosswordGeneratorWidget extends ConsumerWidget {
                   style: TextStyle(
                     fontSize: 24,
                     color: explorationCell
-                        ? Theme.of(context).colorScheme.onPrimary
-                        : Theme.of(context).colorScheme.primary,
+                        ? colorScheme.onPrimary
+                        : colorScheme.primary,
                   ),
                   child: const Text(
                       '•'), // https://www.compart.com/en/unicode/U+2022
@@ -77,7 +76,7 @@ class CrosswordGeneratorWidget extends ConsumerWidget {
           }
 
           return ColoredBox(
-            color: Theme.of(context).colorScheme.primaryContainer,
+            color: colorScheme.primaryContainer,
           );
         },
       ),
