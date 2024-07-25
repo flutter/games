@@ -19,7 +19,7 @@ import 'cubits/cubits.dart';
 import 'router.dart';
 import 'style/palette.dart';
 
-void main() async {
+Future<void> main() async {
   // Basic logging setup.
   Logger.root.level = kDebugMode ? Level.FINE : Level.INFO;
   Logger.root.onRecord.listen((record) {
