@@ -1,3 +1,7 @@
+// Copyright 2024, the Flutter project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
 import 'dart:async';
 import 'dart:collection';
 import 'dart:math';
@@ -12,6 +16,7 @@ import 'package:logging/logging.dart';
 
 part 'audio_state.dart';
 
+/// Allows playing music and sound. A facade to `package:audioplayers`.
 class AudioCubit extends Cubit<AudioState> {
   AudioCubit() : super(AudioState.initial());
 
@@ -31,8 +36,12 @@ class AudioCubit extends Cubit<AudioState> {
     }
   }
 
+  /// Preloads all sound effects.
   Future<void> preloadSfx() async {
     log.info('Preloading sound effects');
+    // This assumes there is only a limited number of sound effects in the game.
+    // If there are hundreds of long sound effect files, it's better
+    // to be more selective when preloading.
     await AudioCache.instance.loadAll(
       SfxType.values
           .expand(soundTypeToFilename)
@@ -43,7 +52,9 @@ class AudioCubit extends Cubit<AudioState> {
 
   void handleSongFinished(void _) {
     log.info('Last song finished playing.');
+    // Move the song that just finished playing to the end of the playlist.
     state.playlist.addLast(state.playlist.removeFirst());
+    // Play the song at the beginning of the playlist.
     playCurrentSongInPlaylist();
   }
 
@@ -53,6 +64,11 @@ class AudioCubit extends Cubit<AudioState> {
     unawaited(preloadSfx());
   }
 
+  /// Plays a single sound effect, defined by [type].
+  ///
+  /// The controller will ignore this call when the attached settings'
+  /// [SettingsState.audioOn] is `true` or if its
+  /// [SettingsState.soundsOn] is `false`.
   void playSfx(
     SfxType type,
     SettingsState settings,
@@ -100,7 +116,9 @@ class AudioCubit extends Cubit<AudioState> {
     try {
       state.musicPlayer.resume();
     } catch (err) {
+      // Sometimes, resuming fails with an "Unexpected" error.
       log.severe('Error resuming music', err);
+      // Try starting the song from scratch.
       playCurrentSongInPlaylist();
     }
   }

@@ -1,3 +1,7 @@
+// Copyright 2024, the Flutter project authors. Please see the AUTHORS file
+// for details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
 part of 'settings_bloc.dart';
 
 class SettingsState extends Equatable {
@@ -7,6 +11,14 @@ class SettingsState extends Equatable {
   final String playerName;
 
   const SettingsState({
+    /// Whether or not the audio is on at all. This overrides both music
+    /// and sounds (sfx).
+    ///
+    /// This is an important feature especially on mobile, where players
+    /// expect to be able to quickly mute all the audio. Having this as
+    /// a separate flag (as opposed to some kind of {off, sound, everything}
+    /// enum) means that the player will not lose their [soundsOn] and
+    /// [musicOn] preferences when they temporarily mute the game.
     this.audioOn = true,
     this.musicOn = true,
     this.playerName = 'Player',

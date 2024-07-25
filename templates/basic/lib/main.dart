@@ -68,6 +68,11 @@ class MyApp extends StatelessWidget {
             BlocProvider(
               create: (context) => SettingsBloc(
                 appLifecycleNotifier: context.read<AppLifecycleStateNotifier>(),
+
+                /// Enables the [AudioCubit] to track changes to settings.
+                /// Namely, when any of [SettingsState.audioOn],
+                /// [SettingsState.musicOn] or [SettingsState.soundsOn] changes,
+                /// the audio cubit will act accordingly.
                 audioCubit: context.read<AudioCubit>(),
               ),
             ),
