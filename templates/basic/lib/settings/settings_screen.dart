@@ -3,15 +3,14 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
-import '../player_progress/player_progress.dart';
+import '../blocs/blocs.dart';
 import '../style/my_button.dart';
 import '../style/palette.dart';
 import '../style/responsive_screen.dart';
 import 'custom_name_dialog.dart';
-import 'settings.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -20,59 +19,63 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settings = context.watch<SettingsController>();
     final palette = context.watch<Palette>();
 
     return Scaffold(
       backgroundColor: palette.backgroundSettings,
       body: ResponsiveScreen(
-        squarishMainArea: ListView(
-          children: [
-            _gap,
-            const Text(
-              'Settings',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontFamily: 'Permanent Marker',
-                fontSize: 55,
-                height: 1,
-              ),
-            ),
-            _gap,
-            const _NameChangeLine(
-              'Name',
-            ),
-            ValueListenableBuilder<bool>(
-              valueListenable: settings.soundsOn,
-              builder: (context, soundsOn, child) => _SettingsLine(
-                'Sound FX',
-                Icon(soundsOn ? Icons.graphic_eq : Icons.volume_off),
-                onSelected: settings.toggleSoundsOn,
-              ),
-            ),
-            ValueListenableBuilder<bool>(
-              valueListenable: settings.musicOn,
-              builder: (context, musicOn, child) => _SettingsLine(
-                'Music',
-                Icon(musicOn ? Icons.music_note : Icons.music_off),
-                onSelected: settings.toggleMusicOn,
-              ),
-            ),
-            _SettingsLine(
-              'Reset progress',
-              const Icon(Icons.delete),
-              onSelected: () {
-                context.read<PlayerProgress>().reset();
+        squarishMainArea: BlocBuilder<SettingsBloc, SettingsState>(
+          builder: (context, state) {
+            return ListView(
+              children: [
+                _gap,
+                const Text(
+                  'Settings',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Permanent Marker',
+                    fontSize: 55,
+                    height: 1,
+                  ),
+                ),
+                _gap,
+                _NameChangeLine(
+                  'Name',
+                  state.playerName,
+                ),
+                _SettingsLine(
+                  'Sound FX',
+                  Icon(state.soundsOn ? Icons.graphic_eq : Icons.volume_off),
+                  onSelected: () => context.read<SettingsBloc>().add(
+                        ToggleSound(),
+                      ),
+                ),
+                _SettingsLine(
+                  'Music',
+                  Icon(state.musicOn ? Icons.music_note : Icons.music_off),
+                  onSelected: () => context.read<SettingsBloc>().add(
+                        ToggleMusic(),
+                      ),
+                ),
+                _SettingsLine(
+                  'Reset progress',
+                  const Icon(Icons.delete),
+                  onSelected: () {
+                    context.read<PlayerProgressBloc>().add(
+                          Reset(),
+                        );
 
-                final messenger = ScaffoldMessenger.of(context);
-                messenger.showSnackBar(
-                  const SnackBar(
-                      content: Text('Player progress has been reset.')),
-                );
-              },
-            ),
-            _gap,
-          ],
+                    final messenger = ScaffoldMessenger.of(context);
+                    messenger.showSnackBar(
+                      const SnackBar(
+                          content: Text('Player progress has been reset.')),
+                    );
+                  },
+                ),
+                _gap,
+              ],
+            );
+          },
         ),
         rectangularMenuArea: MyButton(
           onPressed: () {
@@ -87,13 +90,15 @@ class SettingsScreen extends StatelessWidget {
 
 class _NameChangeLine extends StatelessWidget {
   final String title;
+  final String name;
 
-  const _NameChangeLine(this.title);
+  const _NameChangeLine(
+    this.title,
+    this.name,
+  );
 
   @override
   Widget build(BuildContext context) {
-    final settings = context.watch<SettingsController>();
-
     return InkResponse(
       highlightShape: BoxShape.rectangle,
       onTap: () => showCustomNameDialog(context),
@@ -102,20 +107,19 @@ class _NameChangeLine extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(title,
-                style: const TextStyle(
-                  fontFamily: 'Permanent Marker',
-                  fontSize: 30,
-                )),
+            Text(
+              title,
+              style: const TextStyle(
+                fontFamily: 'Permanent Marker',
+                fontSize: 30,
+              ),
+            ),
             const Spacer(),
-            ValueListenableBuilder(
-              valueListenable: settings.playerName,
-              builder: (context, name, child) => Text(
-                '‘$name’',
-                style: const TextStyle(
-                  fontFamily: 'Permanent Marker',
-                  fontSize: 30,
-                ),
+            Text(
+              '‘$name’',
+              style: const TextStyle(
+                fontFamily: 'Permanent Marker',
+                fontSize: 30,
               ),
             ),
           ],

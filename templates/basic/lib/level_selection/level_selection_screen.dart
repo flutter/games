@@ -2,13 +2,13 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:basic/cubits/cubits.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
-import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
-import '../player_progress/player_progress.dart';
+import '../blocs/blocs.dart';
 import '../style/my_button.dart';
 import '../style/palette.dart';
 import '../style/responsive_screen.dart';
@@ -20,7 +20,6 @@ class LevelSelectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
-    final playerProgress = context.watch<PlayerProgress>();
 
     return Scaffold(
       backgroundColor: palette.backgroundLevelSelection,
@@ -39,23 +38,29 @@ class LevelSelectionScreen extends StatelessWidget {
             ),
             const SizedBox(height: 50),
             Expanded(
-              child: ListView(
-                children: [
-                  for (final level in gameLevels)
-                    ListTile(
-                      enabled: playerProgress.highestLevelReached >=
-                          level.number - 1,
-                      onTap: () {
-                        final audioController = context.read<AudioController>();
-                        audioController.playSfx(SfxType.buttonTap);
+              child: BlocBuilder<PlayerProgressBloc, PlayerProgressState>(
+                builder: (context, state) {
+                  return ListView(
+                    children: [
+                      for (final level in gameLevels)
+                        ListTile(
+                          enabled:
+                              state.highestLevelReached >= level.number - 1,
+                          onTap: () {
+                            context.read<AudioCubit>().playSfx(
+                                  SfxType.buttonTap,
+                                  context.read<SettingsBloc>().state,
+                                );
 
-                        GoRouter.of(context)
-                            .go('/play/session/${level.number}');
-                      },
-                      leading: Text(level.number.toString()),
-                      title: Text('Level #${level.number}'),
-                    )
-                ],
+                            GoRouter.of(context)
+                                .go('/play/session/${level.number}');
+                          },
+                          leading: Text(level.number.toString()),
+                          title: Text('Level #${level.number}'),
+                        )
+                    ],
+                  );
+                },
               ),
             ),
           ],

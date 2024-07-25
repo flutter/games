@@ -2,13 +2,13 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:basic/cubits/cubits.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:provider/provider.dart';
 
-import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
-import '../settings/settings.dart';
+import '../blocs/blocs.dart';
 import '../style/my_button.dart';
 import '../style/palette.dart';
 import '../style/responsive_screen.dart';
@@ -19,8 +19,6 @@ class MainMenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
-    final settingsController = context.watch<SettingsController>();
-    final audioController = context.watch<AudioController>();
 
     return Scaffold(
       backgroundColor: palette.backgroundMain,
@@ -39,38 +37,44 @@ class MainMenuScreen extends StatelessWidget {
             ),
           ),
         ),
-        rectangularMenuArea: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            MyButton(
-              onPressed: () {
-                audioController.playSfx(SfxType.buttonTap);
-                GoRouter.of(context).go('/play');
-              },
-              child: const Text('Play'),
-            ),
-            _gap,
-            MyButton(
-              onPressed: () => GoRouter.of(context).push('/settings'),
-              child: const Text('Settings'),
-            ),
-            _gap,
-            Padding(
-              padding: const EdgeInsets.only(top: 32),
-              child: ValueListenableBuilder<bool>(
-                valueListenable: settingsController.audioOn,
-                builder: (context, audioOn, child) {
-                  return IconButton(
-                    onPressed: settingsController.toggleAudioOn,
-                    icon: Icon(audioOn ? Icons.volume_up : Icons.volume_off),
-                  );
-                },
-              ),
-            ),
-            _gap,
-            const Text('Music by Mr Smith'),
-            _gap,
-          ],
+        rectangularMenuArea: BlocBuilder<SettingsBloc, SettingsState>(
+          builder: (context, state) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                MyButton(
+                  onPressed: () {
+                    context.read<AudioCubit>().playSfx(
+                          SfxType.buttonTap,
+                          state,
+                        );
+                    GoRouter.of(context).go('/play');
+                  },
+                  child: const Text('Play'),
+                ),
+                _gap,
+                MyButton(
+                  onPressed: () => GoRouter.of(context).push('/settings'),
+                  child: const Text('Settings'),
+                ),
+                _gap,
+                Padding(
+                  padding: const EdgeInsets.only(top: 32),
+                  child: IconButton(
+                    onPressed: () => context.read<SettingsBloc>().add(
+                          ToggleAudio(),
+                        ),
+                    icon: Icon(
+                      state.audioOn ? Icons.volume_up : Icons.volume_off,
+                    ),
+                  ),
+                ),
+                _gap,
+                const Text('Music by Mr Smith'),
+                _gap,
+              ],
+            );
+          },
         ),
       ),
     );

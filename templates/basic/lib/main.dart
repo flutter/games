@@ -7,14 +7,16 @@ import 'dart:developer' as dev;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:logging/logging.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'app_lifecycle/app_lifecycle.dart';
-import 'audio/audio_controller.dart';
-import 'player_progress/player_progress.dart';
+import 'blocs/blocs.dart';
+import 'cubits/cubits.dart';
 import 'router.dart';
-import 'settings/settings.dart';
 import 'style/palette.dart';
 
 void main() async {
@@ -38,6 +40,12 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
 
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb
+        ? HydratedStorage.webStorageDirectory
+        : await getTemporaryDirectory(),
+  );
+
   runApp(MyApp());
 }
 
@@ -47,58 +55,52 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppLifecycleObserver(
-      child: MultiProvider(
-        // This is where you add objects that you want to have available
-        // throughout your game.
-        //
-        // Every widget in the game can access these objects by calling
-        // `context.watch()` or `context.read()`.
-        // See `lib/main_menu/main_menu_screen.dart` for example usage.
-        providers: [
-          Provider(create: (context) => SettingsController()),
-          Provider(create: (context) => Palette()),
-          ChangeNotifierProvider(create: (context) => PlayerProgress()),
-          // Set up audio.
-          ProxyProvider2<AppLifecycleStateNotifier, SettingsController,
-              AudioController>(
-            create: (context) => AudioController(),
-            update: (context, lifecycleNotifier, settings, audio) {
-              audio!.attachDependencies(lifecycleNotifier, settings);
-              return audio;
-            },
-            dispose: (context, audio) => audio.dispose(),
-            // Ensures that music starts immediately.
-            lazy: false,
-          ),
-        ],
-        child: Builder(builder: (context) {
-          final palette = context.watch<Palette>();
+      child: Provider(
+        create: (context) => Palette(),
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => AudioCubit()..initializeAudio(),
+            ),
+            BlocProvider(
+              create: (context) => PlayerProgressBloc(),
+            ),
+            BlocProvider(
+              create: (context) => SettingsBloc(
+                appLifecycleNotifier: context.read<AppLifecycleStateNotifier>(),
+                audioCubit: context.read<AudioCubit>(),
+              ),
+            ),
+          ],
+          child: Builder(builder: (context) {
+            final palette = context.watch<Palette>();
 
-          return MaterialApp.router(
-            title: 'My Flutter Game',
-            theme: ThemeData.from(
-              colorScheme: ColorScheme.fromSeed(
-                seedColor: palette.darkPen,
-                surface: palette.backgroundMain,
-              ),
-              textTheme: TextTheme(
-                bodyMedium: TextStyle(color: palette.ink),
-              ),
-              useMaterial3: true,
-            ).copyWith(
-              // Make buttons more fun.
-              filledButtonTheme: FilledButtonThemeData(
-                style: FilledButton.styleFrom(
-                  textStyle: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
+            return MaterialApp.router(
+              title: 'My Flutter Game',
+              theme: ThemeData.from(
+                colorScheme: ColorScheme.fromSeed(
+                  seedColor: palette.darkPen,
+                  surface: palette.backgroundMain,
+                ),
+                textTheme: TextTheme(
+                  bodyMedium: TextStyle(color: palette.ink),
+                ),
+                useMaterial3: true,
+              ).copyWith(
+                // Make buttons more fun.
+                filledButtonTheme: FilledButtonThemeData(
+                  style: FilledButton.styleFrom(
+                    textStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
                   ),
                 ),
               ),
-            ),
-            routerConfig: router,
-          );
-        }),
+              routerConfig: router,
+            );
+          }),
+        ),
       ),
     );
   }

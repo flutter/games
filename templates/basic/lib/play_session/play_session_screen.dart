@@ -9,12 +9,12 @@ import 'package:go_router/go_router.dart';
 import 'package:logging/logging.dart' hide Level;
 import 'package:provider/provider.dart';
 
-import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
+import '../blocs/blocs.dart';
+import '../cubits/cubits.dart';
 import '../game_internals/level_state.dart';
 import '../game_internals/score.dart';
 import '../level_selection/levels.dart';
-import '../player_progress/player_progress.dart';
 import '../style/confetti.dart';
 import '../style/my_button.dart';
 import '../style/palette.dart';
@@ -137,8 +137,11 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
       DateTime.now().difference(_startOfPlay),
     );
 
-    final playerProgress = context.read<PlayerProgress>();
-    playerProgress.setLevelReached(widget.level.number);
+    context.read<PlayerProgressBloc>().add(
+          SetHighestLevelReached(
+            level: widget.level.number,
+          ),
+        );
 
     // Let the player see the game just after winning for a bit.
     await Future<void>.delayed(_preCelebrationDuration);
@@ -148,8 +151,10 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
       _duringCelebration = true;
     });
 
-    final audioController = context.read<AudioController>();
-    audioController.playSfx(SfxType.congrats);
+    context.read<AudioCubit>().playSfx(
+          SfxType.congrats,
+          context.read<SettingsBloc>().state,
+        );
 
     /// Give the player some time to see the celebration animation.
     await Future<void>.delayed(_celebrationDuration);

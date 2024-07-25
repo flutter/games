@@ -3,10 +3,13 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
-import '../audio/audio_controller.dart';
+// import '../audio/audio_controller.dart';
 import '../audio/sounds.dart';
+import '../blocs/blocs.dart';
+import '../cubits/cubits.dart';
 import '../game_internals/level_state.dart';
 import '../level_selection/levels.dart';
 
@@ -29,7 +32,11 @@ class GameWidget extends StatelessWidget {
           value: levelState.progress / 100,
           onChanged: (value) => levelState.setProgress((value * 100).round()),
           onChangeEnd: (value) {
-            context.read<AudioController>().playSfx(SfxType.wssh);
+            // context.read<AudioController>().playSfx(SfxType.wssh);
+            context.read<AudioCubit>().playSfx(
+                  SfxType.wssh,
+                  context.read<SettingsBloc>().state,
+                );
             levelState.evaluate();
           },
         ),
