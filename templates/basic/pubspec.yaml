@@ -14,8 +14,12 @@ dependencies:
     sdk: flutter
 
   audioplayers: ^6.0.0
+  equatable: ^2.0.5
+  flutter_bloc: ^8.1.6
   go_router: ^14.0.0
+  hydrated_bloc: ^9.1.5
   logging: ^1.2.0
+  path_provider: ^2.1.3
   provider: ^6.1.2
   shared_preferences: ^2.2.3
 
