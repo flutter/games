@@ -56,6 +56,11 @@ class MyGame extends StatelessWidget {
                 bodyColor: palette.text.color,
                 displayColor: palette.text.color,
               ),
+              textButtonTheme: TextButtonThemeData(
+                style: ButtonStyle(
+                  overlayColor: WidgetStateProperty.all(Colors.transparent),
+                ),
+              ),
             ),
             routerConfig: router,
           );

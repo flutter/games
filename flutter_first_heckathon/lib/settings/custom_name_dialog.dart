@@ -37,23 +37,28 @@ class _CustomNameDialogState extends State<CustomNameDialog> {
           ),
         ),
         children: [
-          TextField(
-            controller: _controller,
-            autofocus: true,
-            maxLength: 12,
-            maxLengthEnforcement: MaxLengthEnforcement.enforced,
-            style: Theme.of(context).textTheme.bodyMedium,
-            textAlign: TextAlign.center,
-            textCapitalization: TextCapitalization.words,
-            textInputAction: TextInputAction.done,
-            onChanged: (value) {
-              context.read<SettingsController>().setPlayerName(value);
-            },
-            onSubmitted: (value) {
-              // Player tapped 'Submit'/'Done' on their keyboard.
-              Navigator.pop(context);
-            },
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: TextField(
+              controller: _controller,
+              autofocus: true,
+              maxLength: 12,
+              maxLengthEnforcement: MaxLengthEnforcement.enforced,
+              style: Theme.of(context).textTheme.bodyMedium,
+              textAlign: TextAlign.center,
+              textCapitalization: TextCapitalization.words,
+              textInputAction: TextInputAction.done,
+              onChanged: (value) {
+                context.read<SettingsController>().setPlayerName(value);
+              },
+              onSubmitted: (value) {
+                // Player tapped 'Submit'/'Done' on their keyboard.
+                Navigator.pop(context);
+              },
+            ),
           ),
+          const SizedBox(height: 20),
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(

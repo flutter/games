@@ -1,3 +1,4 @@
+import 'package:endless_runner/audio/audio_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
@@ -16,7 +17,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settings = context.watch<SettingsController>();
+    final settingsController = context.watch<SettingsController>();
     final palette = context.watch<Palette>();
 
     return Scaffold(
@@ -42,40 +43,40 @@ class SettingsScreen extends StatelessWidget {
                       ),
                     ),
                     _gap,
-                    const _NameChangeLine(
-                      'Name',
-                    ),
+                    const _NameChangeLine('Name'),
                     ValueListenableBuilder<bool>(
-                      valueListenable: settings.soundsOn,
-                      builder: (context, soundsOn, child) => _SettingsLine(
-                        'Sound FX',
-                        Icon(soundsOn
-                            ? FontAwesomeIcons.chartSimple
-                            : FontAwesomeIcons.volumeXmark),
-                        onSelected: () => settings.toggleSoundsOn(),
-                      ),
-                    ),
-                    ValueListenableBuilder<bool>(
-                      valueListenable: settings.musicOn,
+                      valueListenable: settingsController.musicOn,
                       builder: (context, musicOn, child) => _SettingsLine(
                         'Music',
-                        Icon(
-                            musicOn ? FontAwesomeIcons.music : Icons.music_off),
-                        onSelected: () => settings.toggleMusicOn(),
+                        ValueListenableBuilder<bool>(
+                          valueListenable: settingsController.audioOn,
+                          builder: (context, audioOn, child) {
+                            return IconButton(
+                              onPressed: () =>
+                                  settingsController.toggleAudioOn(),
+                              icon: Icon(audioOn
+                                  ? FontAwesomeIcons.volumeHigh
+                                  : FontAwesomeIcons.volumeXmark),
+                            );
+                          },
+                        ),
                       ),
                     ),
                     _SettingsLine(
                       'Reset progress',
-                      const Icon(FontAwesomeIcons.trash),
-                      onSelected: () {
-                        context.read<PlayerProgress>().reset();
+                      IconButton(
+                        onPressed: () {
+                          context.read<PlayerProgress>().reset();
 
-                        final messenger = ScaffoldMessenger.of(context);
-                        messenger.showSnackBar(
-                          const SnackBar(
-                              content: Text('Player progress has been reset.')),
-                        );
-                      },
+                          final messenger = ScaffoldMessenger.of(context);
+                          messenger.showSnackBar(
+                            const SnackBar(
+                                content:
+                                    Text('Player progress has been reset.')),
+                          );
+                        },
+                        icon: const Icon(FontAwesomeIcons.trash),
+                      ),
                     ),
                   ],
                 ),
@@ -105,23 +106,27 @@ class _NameChangeLine extends StatelessWidget {
   Widget build(BuildContext context) {
     final settings = context.watch<SettingsController>();
 
-    return InkResponse(
-      highlightShape: BoxShape.rectangle,
-      onTap: () => showCustomNameDialog(context),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(title,
-                style: const TextStyle(
-                  fontFamily: 'Press Start 2P',
-                  fontSize: 20,
-                )),
-            const Spacer(),
-            ValueListenableBuilder(
-              valueListenable: settings.playerName,
-              builder: (context, name, child) => Text(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontFamily: 'Press Start 2P',
+              fontSize: 20,
+            ),
+          ),
+          const Spacer(),
+          ValueListenableBuilder(
+            valueListenable: settings.playerName,
+            builder: (context, name, child) => InkResponse(
+              highlightShape: BoxShape.rectangle,
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              onTap: () => showCustomNameDialog(context),
+              child: Text(
                 '‘$name’',
                 style: const TextStyle(
                   fontFamily: 'Press Start 2P',
@@ -129,8 +134,8 @@ class _NameChangeLine extends StatelessWidget {
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -141,15 +146,11 @@ class _SettingsLine extends StatelessWidget {
 
   final Widget icon;
 
-  final VoidCallback? onSelected;
-
-  const _SettingsLine(this.title, this.icon, {this.onSelected});
+  const _SettingsLine(this.title, this.icon);
 
   @override
   Widget build(BuildContext context) {
     return InkResponse(
-      highlightShape: BoxShape.rectangle,
-      onTap: onSelected,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Row(

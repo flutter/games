@@ -16,7 +16,6 @@ class MainMenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
-    final settingsController = context.watch<SettingsController>();
     final audioController = context.watch<AudioController>();
 
     return Scaffold(
@@ -63,21 +62,6 @@ class MainMenuScreen extends StatelessWidget {
             WobblyButton(
               onPressed: () => GoRouter.of(context).push('/settings'),
               child: const Text('Settings'),
-            ),
-            _gap,
-            Padding(
-              padding: const EdgeInsets.only(top: 32),
-              child: ValueListenableBuilder<bool>(
-                valueListenable: settingsController.audioOn,
-                builder: (context, audioOn, child) {
-                  return IconButton(
-                    onPressed: () => settingsController.toggleAudioOn(),
-                    icon: Icon(audioOn
-                        ? FontAwesomeIcons.volumeHigh
-                        : FontAwesomeIcons.volumeXmark),
-                  );
-                },
-              ),
             ),
             _gap,
           ],
