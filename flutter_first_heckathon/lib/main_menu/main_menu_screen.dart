@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -71,13 +72,14 @@ class MainMenuScreen extends StatelessWidget {
                 builder: (context, audioOn, child) {
                   return IconButton(
                     onPressed: () => settingsController.toggleAudioOn(),
-                    icon: Icon(audioOn ? Icons.volume_up : Icons.volume_off),
+                    icon: Icon(audioOn
+                        ? FontAwesomeIcons.volumeHigh
+                        : FontAwesomeIcons.volumeXmark),
                   );
                 },
               ),
             ),
             _gap,
-            const Text('Built with Flame'),
           ],
         ),
       ),

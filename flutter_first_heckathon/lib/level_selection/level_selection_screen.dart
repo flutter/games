@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nes_ui/nes_ui.dart';
 import 'package:provider/provider.dart';
@@ -79,7 +80,7 @@ class LevelSelectionScreen extends StatelessWidget {
                           if (playerProgress.levels.length <
                               level.number - 1) ...[
                             const SizedBox(width: 10),
-                            const Icon(Icons.lock, size: 20),
+                            const Icon(FontAwesomeIcons.lock, size: 20),
                           ] else if (playerProgress.levels.length >=
                               level.number) ...[
                             const SizedBox(width: 50),
