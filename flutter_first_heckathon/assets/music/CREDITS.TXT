@@ -1,0 +1,27 @@
+Title: Bit Forest intro
+Author: bertsz
+URL: https://opengameart.org/content/bit-forest-intro
+License(s):
+    * CC0 ( http://creativecommons.org/publicdomain/zero/1.0/legalcode )
+File(s):
+    * bit_forrest.mp3
+
+----------------------------------------
+
+Title: Free Run [8 bit(ish)]
+Author: TAD
+URL: https://opengameart.org/content/free-run-8-bitish
+License(s):
+    * CC0 ( http://creativecommons.org/publicdomain/zero/1.0/legalcode )
+File(s):
+    * free_run.mp3
+
+----------------------------------------
+
+Title: Tropical Fantasy
+Author: Spring Spring
+URL: https://opengameart.org/content/tropical-fantasy
+License(s):
+    * CC0 ( http://creativecommons.org/publicdomain/zero/1.0/legalcode )
+File(s):
+    * tropical_fantasy.mp3
