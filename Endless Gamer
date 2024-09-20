@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endless Runner</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .game-area {
+            width: 100%;
+            height: 300px;
+            border: 2px solid black;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .player {
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+            position: absolute;
+            bottom: 0;
+            left: 50px;
+        }
+
+        .obstacle {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            animation: moveObstacle 2s linear infinite;
+        }
+
+        @keyframes moveObstacle {
+            0% { right: 0; }
+            100% { right: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="game-area">
+    <div class="player" id="player"></div>
+    <div class="obstacle" id="obstacle"></div>
+</div>
+
+<script>
+    const player = document.getElementById('player');
+    const obstacle = document.getElementById('obstacle');
+    let isJumping = false;
+
+    // Handle player jump
+    document.addEventListener('keydown', function(event) {
+        if (event.code === 'Space' && !isJumping) {
+            jump();
+        }
+    });
+
+    function jump() {
+        let position = 0;
+        isJumping = true;
+        let upInterval = setInterval(() => {
+            if (position >= 150) {
+                clearInterval(upInterval);
+                let downInterval = setInterval(() => {
+                    if (position <= 0) {
+                        clearInterval(downInterval);
+                        isJumping = false;
+                    } else {
+                        position -= 5;
+                        player.style.bottom = position + 'px';
+                    }
+                }, 20);
+            } else {
+                position += 5;
+                player.style.bottom = position + 'px';
+            }
+        }, 20);
+    }
+
+    // Check collision
+    let checkCollision = setInterval(function() {
+        let playerBottom = parseInt(window.getComputedStyle(player).getPropertyValue('bottom'));
+        let obstacleRight = parseInt(window.getComputedStyle(obstacle).getPropertyValue('right'));
+
+        if (obstacleRight > 50 && obstacleRight < 100 && playerBottom <= 50) {
+            alert('Game Over!');
+            location.reload(); // Restart the game
+        }
+    }, 10);
+</script>
+
+</body>
+</html>
