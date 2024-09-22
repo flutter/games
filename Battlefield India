@@ -1,0 +1,65 @@
+public class MyGdxGame extends ApplicationAdapter {
+    SpriteBatch batch;
+    Texture playerTexture;
+    Texture bulletTexture;
+    Texture enemyTexture;
+    Player player;
+    Array<Bullet> bullets;
+    Array<Enemy> enemies;
+
+    @Override
+    public void create() {
+        batch = new SpriteBatch();
+        playerTexture = new Texture("player.png");
+        bulletTexture = new Texture("bullet.png");
+        enemyTexture = new Texture("enemy.png");
+
+        player = new Player(playerTexture);
+        bullets = new Array<>();
+        enemies = new Array<>();
+        spawnEnemies();
+    }
+
+    @Override
+    public void render() {
+        update();
+        draw();
+    }
+
+    private void update() {
+        player.update();
+        for (Bullet bullet : bullets) {
+            bullet.update();
+        }
+        for (Enemy enemy : enemies) {
+            enemy.update();
+        }
+        // Add collision detection and other game logic here
+    }
+
+    private void draw() {
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.begin();
+        player.draw(batch);
+        for (Bullet bullet : bullets) {
+            bullet.draw(batch);
+        }
+        for (Enemy enemy : enemies) {
+            enemy.draw(batch);
+        }
+        batch.end();
+    }
+
+    private void spawnEnemies() {
+        // Code to spawn enemies
+    }
+
+    @Override
+    public void dispose() {
+        batch.dispose();
+        playerTexture.dispose();
+        bulletTexture.dispose();
+        enemyTexture.dispose();
+    }
+}
