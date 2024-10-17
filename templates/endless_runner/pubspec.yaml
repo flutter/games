@@ -7,7 +7,7 @@ publish_to: 'none'
 version: 0.1.0
 
 environment:
-  sdk: ^3.3.0
+  sdk: ^3.5.0
 
 dependencies:
   flame: ^1.18.0
@@ -25,7 +25,7 @@ dependencies:
 
 dev_dependencies:
   flame_test: ^1.16.2
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: ^0.13.1
