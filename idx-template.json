@@ -18,8 +18,7 @@
         "templates/card": "Card",
         "templates/endless_runner": "Endless Runner",
         "samples/ads": "Ads (Sample)",
-        "samples/crossword": "Crossword (Sample)",
-        "samples/multiplayer": "Multiplayer (Sample)"
+        "samples/crossword": "Crossword (Sample)"
       }
     }
   ]
