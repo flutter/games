@@ -10,7 +10,7 @@ Visit [flutter.dev/games](https://flutter.dev/games) for more information.
 If you're new to Flutter, you first need to install the 
 [Flutter SDK](https://flutter.dev/).
 
-<a href="https://idx.google.com/new?template=https%3A%2F%2Fgithub.com%2Fflutter%2Fgames%2Ftree%2Fmain%2F.idx">
+<a href="https://idx.google.com/new?template=https%3A%2F%2Fgithub.com%2Fflutter%2Fgames">
   <picture>
     <source
       media="(prefers-color-scheme: dark)"
