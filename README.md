@@ -14,10 +14,10 @@ If you're new to Flutter, you first need to install the
   <picture>
     <source
       media="(prefers-color-scheme: dark)"
-      srcset="https://cdn.idx.dev/btn/try_dark_32.svg">
+      srcset="https://cdn.idx.dev/btn/try_light_32.svg">
     <source
       media="(prefers-color-scheme: light)"
-      srcset="https://cdn.idx.dev/btn/try_light_32.svg">
+      srcset="https://cdn.idx.dev/btn/try_dark_32.svg">
     <img
       height="32"
       alt="Try in IDX"
