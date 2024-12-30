@@ -1,5 +1,5 @@
 name: endless_runner
-description: A Flame game template built with Flutter.
+description: A Flame game template built with Flutter by shinnu.
 
 # Prevent accidental publishing to pub.dev.
 publish_to: 'none'
