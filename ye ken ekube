@@ -1,0 +1,114 @@
+import 'package:flutter/material.dart';
+
+class TierSelectionScreen extends StatelessWidget {
+  final List<int> tiers = [100, 200, 300, 500, 1000, 2000, 5000, 10000];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Select Betting Tier'),
+      ),
+      body: ListView.builder(
+        itemCount: tiers.length,
+        itemBuilder: (context, index) {
+          return Card(
+            margin: EdgeInsets.all(10),
+            child: ListTile(
+              title: Text('${tiers[index]} Birr Tier'),
+              trailing: Icon(Icons.arrow_forward_ios),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NumberSelectionScreen(tier: tiers[index]),
+                  ),
+                );
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+class NumberSelectionScreen extends StatefulWidget {
+  final int tier;
+  const NumberSelectionScreen({required this.tier});
+
+  @override
+  _NumberSelectionScreenState createState() => _NumberSelectionScreenState();
+}
+
+class _NumberSelectionScreenState extends State<NumberSelectionScreen> {
+  List<int> selectedNumbers = [];
+  List<int> takenNumbers = [3, 7]; // simulate already picked numbers
+
+  void toggleNumber(int number) {
+    if (takenNumbers.contains(number)) return;
+
+    setState(() {
+      if (selectedNumbers.contains(number)) {
+        selectedNumbers.remove(number);
+      } else {
+        if (selectedNumbers.length < 2) {
+          selectedNumbers.add(number);
+        }
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('${widget.tier} Birr - Pick Numbers'),
+      ),
+      body: Column(
+        children: [
+          SizedBox(height: 20),
+          Wrap(
+            spacing: 15,
+            runSpacing: 15,
+            children: List.generate(10, (index) {
+              int number = index + 1;
+              bool isTaken = takenNumbers.contains(number);
+              bool isSelected = selectedNumbers.contains(number);
+
+              return GestureDetector(
+                onTap: () => toggleNumber(number),
+                child: Container(
+                  width: 60,
+                  height: 60,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: isTaken
+                        ? Colors.grey
+                        : isSelected
+                            ? Colors.green
+                            : Colors.white,
+                    border: Border.all(color: Colors.black),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Text(
+                    '$number',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+              );
+            }),
+          ),
+          SizedBox(height: 30),
+          ElevatedButton(
+            onPressed: selectedNumbers.isEmpty
+                ? null
+                : () {
+                    // Move to payment screen
+                  },
+            child: Text('Continue to Pay'),
+          ),
+        ],
+      ),
+    );
+  }
+}
