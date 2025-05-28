@@ -10,6 +10,20 @@ Visit [flutter.dev/games](https://flutter.dev/games) for more information.
 If you're new to Flutter, you first need to install the 
 [Flutter SDK](https://flutter.dev/).
 
+<a href="https://idx.google.com/new?template=https%3A%2F%2Fgithub.com%2Fflutter%2Fgames">
+  <picture>
+    <source
+      media="(prefers-color-scheme: dark)"
+      srcset="https://cdn.idx.dev/btn/try_light_32.svg">
+    <source
+      media="(prefers-color-scheme: light)"
+      srcset="https://cdn.idx.dev/btn/try_dark_32.svg">
+    <img
+      height="32"
+      alt="Try in IDX"
+      src="https://cdn.idx.dev/btn/try_purple_32.svg">
+  </picture>
+</a>
 
 ## Organization
 
@@ -40,6 +54,31 @@ The projects in this repository are divided into two broad categories:
 
 
 ## How to use
+
+The easiest way to get any of the samples and templates from this repository
+is to install the 
+[`sample_downloader` tool](https://pub.dev/packages/sample_downloader)
+and use it.
+
+On the command line, while having the 
+[Flutter SDK installed](https://docs.flutter.dev/get-started/install),
+run the following command:
+
+```shell
+dart pub global activate sample_downloader
+```
+
+Then, from any directory, run the newly installed tool
+and follow its instructions.
+
+```shell
+sample_downloader
+```
+
+### The manual way
+
+If, for any reason, you prefer not to use the `sample_downloader` tool,
+follow these steps.
 
 1. Clone this repository.
 

@@ -8,11 +8,12 @@ source "$DIR/flutter_ci_script_shared.sh"
 flutter doctor -v
 
 declare -ar PROJECT_NAMES=(
+    "samples/ads"
+    "samples/crossword"
+    "samples/multiplayer"
     "templates/basic"
     "templates/card"
     "templates/endless_runner"
-    "samples/ads"
-    "samples/multiplayer"
 )
 
 ci_projects "beta" "${PROJECT_NAMES[@]}"

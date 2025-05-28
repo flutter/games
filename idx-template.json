@@ -1,0 +1,25 @@
+{
+  "name": "Flutter Casual Games Toolkit",
+  "description": "Flutter Casual Games Toolkit",
+  "categories": ["Mobile"],
+  "icon": "https://www.gstatic.com/images/branding/productlogos/flutter/v6/192px.svg",
+  "publisher": "Google LLC",
+  "host": {
+    "virtualization": "true"
+  },
+  "params": [
+    {
+      "id": "template",
+      "name": "Template",
+      "type": "enum",
+      "default": "templates/basic",
+      "options": {
+        "templates/basic": "Basic",
+        "templates/card": "Card",
+        "templates/endless_runner": "Endless Runner",
+        "samples/ads": "Ads (Sample)",
+        "samples/crossword": "Crossword (Sample)"
+      }
+    }
+  ]
+}

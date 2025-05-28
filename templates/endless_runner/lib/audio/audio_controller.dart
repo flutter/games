@@ -199,22 +199,6 @@ class AudioController {
     } catch (e) {
       _log.severe('Could not play song ${_playlist.first}', e);
     }
-
-    // Settings can change while the music player is preparing
-    // to play a song (i.e. during the `await` above).
-    // Unfortunately, `audioplayers` has a bug which will ignore calls
-    // to `pause()` before that await is finished, so we need
-    // to double check here.
-    // See issue: https://github.com/bluefireteam/audioplayers/issues/1687
-    if (!_settings!.audioOn.value || !_settings!.musicOn.value) {
-      try {
-        _log.fine('Settings changed while preparing to play song. '
-            'Pausing music.');
-        await _musicPlayer.pause();
-      } catch (e) {
-        _log.severe('Could not pause music player', e);
-      }
-    }
   }
 
   /// Preloads all sound effects.
