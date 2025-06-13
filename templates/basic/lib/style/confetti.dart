@@ -52,21 +52,21 @@ class ConfettiPainter extends CustomPainter {
 
   final UnmodifiableListView<Color> colors;
 
-  ConfettiPainter(
-      {required Listenable animation, required Iterable<Color> colors})
-      : colors = UnmodifiableListView(colors),
-        super(repaint: animation);
+  ConfettiPainter({
+    required Listenable animation,
+    required Iterable<Color> colors,
+  }) : colors = UnmodifiableListView(colors),
+       super(repaint: animation);
 
   @override
   void paint(Canvas canvas, Size size) {
     if (_size == null) {
       // First time we have a size.
       _snippings = List.generate(
-          snippingsCount,
-          (i) => _PaperSnipping(
-                frontColor: colors[i % colors.length],
-                bounds: size,
-              ));
+        snippingsCount,
+        (i) =>
+            _PaperSnipping(frontColor: colors[i % colors.length], bounds: size),
+      );
     }
 
     final didResize = _size != null && _size != size;
@@ -97,10 +97,7 @@ class _ConfettiState extends State<Confetti>
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: ConfettiPainter(
-        colors: widget.colors,
-        animation: _controller,
-      ),
+      painter: ConfettiPainter(colors: widget.colors, animation: _controller),
       willChange: true,
       child: const SizedBox.expand(),
     );
@@ -181,10 +178,8 @@ class _PaperSnipping {
 
   final paint = Paint()..style = PaintingStyle.fill;
 
-  _PaperSnipping({
-    required this.frontColor,
-    required Size bounds,
-  }) : _bounds = bounds;
+  _PaperSnipping({required this.frontColor, required Size bounds})
+    : _bounds = bounds;
 
   void draw(Canvas canvas) {
     if (cosA > 0) {
@@ -196,11 +191,12 @@ class _PaperSnipping {
     final path = Path()
       ..addPolygon(
         List.generate(
-            4,
-            (index) => Offset(
-                  position.x + corners[index].x * size,
-                  position.y + corners[index].y * size * cosA,
-                )),
+          4,
+          (index) => Offset(
+            position.x + corners[index].x * size,
+            position.y + corners[index].y * size * cosA,
+          ),
+        ),
         true,
       );
     canvas.drawPath(path, paint);
