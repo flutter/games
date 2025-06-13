@@ -23,7 +23,7 @@ class PlayerProgress extends ChangeNotifier {
   /// Creates an instance of [PlayerProgress] backed by an injected
   /// persistence [store].
   PlayerProgress({PlayerProgressPersistence? store})
-      : _store = store ?? LocalStoragePlayerProgressPersistence() {
+    : _store = store ?? LocalStoragePlayerProgressPersistence() {
     _getLatestFromStore();
   }
 
