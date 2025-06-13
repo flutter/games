@@ -15,8 +15,9 @@ class AppLifecycleObserver extends StatefulWidget {
 class _AppLifecycleObserverState extends State<AppLifecycleObserver> {
   late final AppLifecycleListener _appLifecycleListener;
 
-  final ValueNotifier<AppLifecycleState> lifecycleListenable =
-      ValueNotifier(AppLifecycleState.inactive);
+  final ValueNotifier<AppLifecycleState> lifecycleListenable = ValueNotifier(
+    AppLifecycleState.inactive,
+  );
 
   @override
   Widget build(BuildContext context) {

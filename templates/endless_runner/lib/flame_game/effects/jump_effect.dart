@@ -6,5 +6,5 @@ import 'package:flutter/animation.dart';
 /// effect pre-defined.
 class JumpEffect extends MoveByEffect {
   JumpEffect(Vector2 offset)
-      : super(offset, EffectController(duration: 0.3, curve: Curves.ease));
+    : super(offset, EffectController(duration: 0.3, curve: Curves.ease));
 }
