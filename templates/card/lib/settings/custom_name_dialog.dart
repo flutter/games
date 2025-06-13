@@ -10,9 +10,10 @@ import 'settings.dart';
 
 void showCustomNameDialog(BuildContext context) {
   showGeneralDialog(
-      context: context,
-      pageBuilder: (context, animation, secondaryAnimation) =>
-          CustomNameDialog(animation: animation));
+    context: context,
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        CustomNameDialog(animation: animation),
+  );
 }
 
 class CustomNameDialog extends StatefulWidget {

@@ -30,8 +30,11 @@ class MyGame extends StatelessWidget {
           ChangeNotifierProvider(create: (context) => PlayerProgress()),
           Provider(create: (context) => SettingsController()),
           // Set up audio.
-          ProxyProvider2<SettingsController, AppLifecycleStateNotifier,
-              AudioController>(
+          ProxyProvider2<
+            SettingsController,
+            AppLifecycleStateNotifier,
+            AudioController
+          >(
             // Ensures that music starts immediately.
             lazy: false,
             create: (context) => AudioController(),
@@ -42,24 +45,26 @@ class MyGame extends StatelessWidget {
             dispose: (context, audio) => audio.dispose(),
           ),
         ],
-        child: Builder(builder: (context) {
-          final palette = context.watch<Palette>();
+        child: Builder(
+          builder: (context) {
+            final palette = context.watch<Palette>();
 
-          return MaterialApp.router(
-            title: 'Endless Runner',
-            theme: flutterNesTheme().copyWith(
-              colorScheme: ColorScheme.fromSeed(
-                seedColor: palette.seed.color,
-                surface: palette.backgroundMain.color,
+            return MaterialApp.router(
+              title: 'Endless Runner',
+              theme: flutterNesTheme().copyWith(
+                colorScheme: ColorScheme.fromSeed(
+                  seedColor: palette.seed.color,
+                  surface: palette.backgroundMain.color,
+                ),
+                textTheme: GoogleFonts.pressStart2pTextTheme().apply(
+                  bodyColor: palette.text.color,
+                  displayColor: palette.text.color,
+                ),
               ),
-              textTheme: GoogleFonts.pressStart2pTextTheme().apply(
-                bodyColor: palette.text.color,
-                displayColor: palette.text.color,
-              ),
-            ),
-            routerConfig: router,
-          );
-        }),
+              routerConfig: router,
+            );
+          },
+        ),
       ),
     );
   }

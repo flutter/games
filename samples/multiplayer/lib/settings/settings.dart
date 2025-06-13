@@ -41,7 +41,7 @@ class SettingsController {
   /// (i.e. NSUserDefaults on iOS, SharedPreferences on Android or
   /// local storage on the web).
   SettingsController({SettingsPersistence? store})
-      : _store = store ?? LocalStorageSettingsPersistence() {
+    : _store = store ?? LocalStorageSettingsPersistence() {
     _loadStateFromPersistence();
   }
 

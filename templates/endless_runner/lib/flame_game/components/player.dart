@@ -17,11 +17,8 @@ class Player extends SpriteAnimationGroupComponent<PlayerState>
         CollisionCallbacks,
         HasWorldReference<EndlessWorld>,
         HasGameReference<EndlessRunner> {
-  Player({
-    required this.addScore,
-    required this.resetScore,
-    super.position,
-  }) : super(size: Vector2.all(150), anchor: Anchor.center, priority: 1);
+  Player({required this.addScore, required this.resetScore, super.position})
+    : super(size: Vector2.all(150), anchor: Anchor.center, priority: 1);
 
   final void Function({int amount}) addScore;
   final VoidCallback resetScore;
@@ -57,14 +54,12 @@ class Player extends SpriteAnimationGroupComponent<PlayerState>
           stepTime: 0.15,
         ),
       ),
-      PlayerState.jumping: SpriteAnimation.spriteList(
-        [await game.loadSprite('dash/dash_jumping.png')],
-        stepTime: double.infinity,
-      ),
-      PlayerState.falling: SpriteAnimation.spriteList(
-        [await game.loadSprite('dash/dash_falling.png')],
-        stepTime: double.infinity,
-      ),
+      PlayerState.jumping: SpriteAnimation.spriteList([
+        await game.loadSprite('dash/dash_jumping.png'),
+      ], stepTime: double.infinity),
+      PlayerState.falling: SpriteAnimation.spriteList([
+        await game.loadSprite('dash/dash_falling.png'),
+      ], stepTime: double.infinity),
     };
     // The starting state will be that the player is running.
     current = PlayerState.running;
@@ -138,8 +133,4 @@ class Player extends SpriteAnimationGroupComponent<PlayerState>
   }
 }
 
-enum PlayerState {
-  running,
-  jumping,
-  falling,
-}
+enum PlayerState { running, jumping, falling }

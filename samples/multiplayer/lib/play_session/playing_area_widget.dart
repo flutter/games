@@ -101,9 +101,11 @@ class _CardStack extends StatelessWidget {
         height: _maxHeight,
         child: Stack(
           children: [
-            for (var i = max(0, cards.length - _maxCards);
-                i < cards.length;
-                i++)
+            for (
+              var i = max(0, cards.length - _maxCards);
+              i < cards.length;
+              i++
+            )
               Positioned(
                 top: i * _topOffset,
                 left: i * _leftOffset,

@@ -116,8 +116,9 @@ class _InstructionsDialogState extends State<InstructionsDialog> {
                         child: SizedBox(
                           width: 200,
                           height: 100,
-                          child:
-                              SpriteWidget.asset(path: 'enemies/obstacles.png'),
+                          child: SpriteWidget.asset(
+                            path: 'enemies/obstacles.png',
+                          ),
                         ),
                       ),
                       const SizedBox(width: 20),
@@ -126,7 +127,7 @@ class _InstructionsDialogState extends State<InstructionsDialog> {
                         child: Text(
                           'Watch out for these, they will make you drop your Embers.',
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ],

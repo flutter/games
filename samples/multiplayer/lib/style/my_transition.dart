@@ -16,11 +16,7 @@ CustomTransitionPage<T> buildMyTransition<T>({
   return CustomTransitionPage<T>(
     child: child,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      return _MyReveal(
-        animation: animation,
-        color: color,
-        child: child,
-      );
+      return _MyReveal(animation: animation, color: color, child: child);
     },
     key: key,
     name: name,
@@ -63,14 +59,9 @@ class _MyReveal extends StatelessWidget {
               reverseCurve: Curves.easeOutCubic,
             ),
           ),
-          child: Container(
-            color: color,
-          ),
+          child: Container(color: color),
         ),
-        FadeTransition(
-          opacity: _fadeTween.animate(animation),
-          child: child,
-        ),
+        FadeTransition(opacity: _fadeTween.animate(animation), child: child),
       ],
     );
   }

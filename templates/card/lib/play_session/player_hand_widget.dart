@@ -25,8 +25,9 @@ class PlayerHandWidget extends StatelessWidget {
               spacing: 10,
               runSpacing: 10,
               children: [
-                ...boardState.player.hand.map((card) =>
-                    PlayingCardWidget(card, player: boardState.player)),
+                ...boardState.player.hand.map(
+                  (card) => PlayingCardWidget(card, player: boardState.player),
+                ),
               ],
             );
           },

@@ -5,9 +5,10 @@ import 'settings.dart';
 
 void showCustomNameDialog(BuildContext context) {
   showGeneralDialog(
-      context: context,
-      pageBuilder: (context, animation, secondaryAnimation) =>
-          CustomNameDialog(animation: animation));
+    context: context,
+    pageBuilder: (context, animation, secondaryAnimation) =>
+        CustomNameDialog(animation: animation),
+  );
 }
 
 class CustomNameDialog extends StatefulWidget {
@@ -56,10 +57,7 @@ class _CustomNameDialogState extends State<CustomNameDialog> {
           ),
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text(
-              'Close',
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
+            child: Text('Close', style: Theme.of(context).textTheme.bodyMedium),
           ),
         ],
       ),

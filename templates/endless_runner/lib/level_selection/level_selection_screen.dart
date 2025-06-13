@@ -18,8 +18,9 @@ class LevelSelectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
     final playerProgress = context.watch<PlayerProgress>();
-    final levelTextStyle =
-        Theme.of(context).textTheme.bodyMedium?.copyWith(height: 1.4);
+    final levelTextStyle = Theme.of(
+      context,
+    ).textTheme.bodyMedium?.copyWith(height: 1.4);
 
     return Scaffold(
       backgroundColor: palette.backgroundLevelSelection.color,
@@ -45,7 +46,7 @@ class LevelSelectionScreen extends StatelessWidget {
                         builder: (_) => const InstructionsDialog(),
                       );
                     },
-                  )
+                  ),
                 ],
               ),
             ),
@@ -63,8 +64,9 @@ class LevelSelectionScreen extends StatelessWidget {
                         final audioController = context.read<AudioController>();
                         audioController.playSfx(SfxType.buttonTap);
 
-                        GoRouter.of(context)
-                            .go('/play/session/${level.number}');
+                        GoRouter.of(
+                          context,
+                        ).go('/play/session/${level.number}');
                       },
                       leading: Text(
                         level.number.toString(),
@@ -72,10 +74,7 @@ class LevelSelectionScreen extends StatelessWidget {
                       ),
                       title: Row(
                         children: [
-                          Text(
-                            'Level #${level.number}',
-                            style: levelTextStyle,
-                          ),
+                          Text('Level #${level.number}', style: levelTextStyle),
                           if (playerProgress.levels.length <
                               level.number - 1) ...[
                             const SizedBox(width: 10),
@@ -90,7 +89,7 @@ class LevelSelectionScreen extends StatelessWidget {
                           ],
                         ],
                       ),
-                    )
+                    ),
                 ],
               ),
             ),

@@ -10,28 +10,19 @@ import '../endless_world.dart';
 /// that the player can run into.
 class Obstacle extends SpriteComponent with HasWorldReference<EndlessWorld> {
   Obstacle.small({super.position})
-      : _srcSize = Vector2.all(16),
-        _srcPosition = Vector2.all(32),
-        super(
-          size: Vector2.all(150),
-          anchor: Anchor.bottomLeft,
-        );
+    : _srcSize = Vector2.all(16),
+      _srcPosition = Vector2.all(32),
+      super(size: Vector2.all(150), anchor: Anchor.bottomLeft);
 
   Obstacle.tall({super.position})
-      : _srcSize = Vector2(32, 48),
-        _srcPosition = Vector2.zero(),
-        super(
-          size: Vector2(200, 250),
-          anchor: Anchor.bottomLeft,
-        );
+    : _srcSize = Vector2(32, 48),
+      _srcPosition = Vector2.zero(),
+      super(size: Vector2(200, 250), anchor: Anchor.bottomLeft);
 
   Obstacle.wide({super.position})
-      : _srcSize = Vector2(32, 16),
-        _srcPosition = Vector2(48, 32),
-        super(
-          size: Vector2(200, 100),
-          anchor: Anchor.bottomLeft,
-        );
+    : _srcSize = Vector2(32, 16),
+      _srcPosition = Vector2(48, 32),
+      super(size: Vector2(200, 100), anchor: Anchor.bottomLeft);
 
   /// Generates a random obstacle of type [ObstacleType].
   factory Obstacle.random({
@@ -89,8 +80,4 @@ class Obstacle extends SpriteComponent with HasWorldReference<EndlessWorld> {
   }
 }
 
-enum ObstacleType {
-  small,
-  tall,
-  wide,
-}
+enum ObstacleType { small, tall, wide }

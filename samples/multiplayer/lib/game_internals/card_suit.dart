@@ -36,7 +36,4 @@ enum CardSuit {
   String toString() => asCharacter;
 }
 
-enum CardSuitColor {
-  black,
-  red,
-}
+enum CardSuitColor { black, red }

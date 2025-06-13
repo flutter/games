@@ -23,8 +23,9 @@ class PlayingCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final palette = context.watch<Palette>();
-    final textColor =
-        card.suit.color == CardSuitColor.red ? palette.redPen : palette.ink;
+    final textColor = card.suit.color == CardSuitColor.red
+        ? palette.redPen
+        : palette.ink;
 
     final cardWidget = DefaultTextStyle(
       style: Theme.of(context).textTheme.bodyMedium!.apply(color: textColor),
@@ -37,8 +38,10 @@ class PlayingCardWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
         ),
         child: Center(
-          child: Text('${card.suit.asCharacter}\n${card.value}',
-              textAlign: TextAlign.center),
+          child: Text(
+            '${card.suit.asCharacter}\n${card.value}',
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );
@@ -47,15 +50,9 @@ class PlayingCardWidget extends StatelessWidget {
     if (player == null) return cardWidget;
 
     return Draggable(
-      feedback: Transform.rotate(
-        angle: 0.1,
-        child: cardWidget,
-      ),
+      feedback: Transform.rotate(angle: 0.1, child: cardWidget),
       data: PlayingCardDragData(card, player!),
-      childWhenDragging: Opacity(
-        opacity: 0.5,
-        child: cardWidget,
-      ),
+      childWhenDragging: Opacity(opacity: 0.5, child: cardWidget),
       onDragStarted: () {
         final audioController = context.read<AudioController>();
         audioController.playSfx(SfxType.huhsh);

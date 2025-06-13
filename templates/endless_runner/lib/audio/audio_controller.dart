@@ -42,12 +42,13 @@ class AudioController {
   /// Background music does not count into the [polyphony] limit. Music will
   /// never be overridden by sound effects because that would be silly.
   AudioController({int polyphony = 2})
-      : assert(polyphony >= 1),
-        _musicPlayer = AudioPlayer(playerId: 'musicPlayer'),
-        _sfxPlayers = Iterable.generate(
-                polyphony, (i) => AudioPlayer(playerId: 'sfxPlayer#$i'))
-            .toList(growable: false),
-        _playlist = Queue.of(List<Song>.of(songs)..shuffle()) {
+    : assert(polyphony >= 1),
+      _musicPlayer = AudioPlayer(playerId: 'musicPlayer'),
+      _sfxPlayers = Iterable.generate(
+        polyphony,
+        (i) => AudioPlayer(playerId: 'sfxPlayer#$i'),
+      ).toList(growable: false),
+      _playlist = Queue.of(List<Song>.of(songs)..shuffle()) {
     _musicPlayer.onPlayerComplete.listen(_handleSongFinished);
     unawaited(_preloadSfx());
   }
@@ -55,8 +56,10 @@ class AudioController {
   /// Makes sure the audio controller is listening to changes
   /// of both the app lifecycle (e.g. suspended app) and to changes
   /// of settings (e.g. muted sound).
-  void attachDependencies(AppLifecycleStateNotifier lifecycleNotifier,
-      SettingsController settingsController) {
+  void attachDependencies(
+    AppLifecycleStateNotifier lifecycleNotifier,
+    SettingsController settingsController,
+  ) {
     _attachLifecycleNotifier(lifecycleNotifier);
     _attachSettings(settingsController);
   }
@@ -83,8 +86,9 @@ class AudioController {
     }
     final soundsOn = _settings?.soundsOn.value ?? false;
     if (!soundsOn) {
-      _log.fine(() =>
-          'Ignoring playing sound ($type) because sounds are turned off.');
+      _log.fine(
+        () => 'Ignoring playing sound ($type) because sounds are turned off.',
+      );
       return;
     }
 
@@ -94,8 +98,10 @@ class AudioController {
     _log.fine(() => '- Chosen filename: $filename');
 
     final currentPlayer = _sfxPlayers[_currentSfxPlayer];
-    currentPlayer.play(AssetSource('sfx/$filename'),
-        volume: soundTypeToVolume(type));
+    currentPlayer.play(
+      AssetSource('sfx/$filename'),
+      volume: soundTypeToVolume(type),
+    );
     _currentSfxPlayer = (_currentSfxPlayer + 1) % _sfxPlayers.length;
   }
 
@@ -207,10 +213,12 @@ class AudioController {
     // This assumes there is only a limited number of sound effects in the game.
     // If there are hundreds of long sound effect files, it's better
     // to be more selective when preloading.
-    await AudioCache.instance.loadAll(SfxType.values
-        .expand(soundTypeToFilename)
-        .map((path) => 'sfx/$path')
-        .toList());
+    await AudioCache.instance.loadAll(
+      SfxType.values
+          .expand(soundTypeToFilename)
+          .map((path) => 'sfx/$path')
+          .toList(),
+    );
   }
 
   void _soundsOnHandler() {
@@ -223,8 +231,10 @@ class AudioController {
 
   void _startOrResumeMusic() async {
     if (_musicPlayer.source == null) {
-      _log.info('No music source set. '
-          'Start playing the current song in playlist.');
+      _log.info(
+        'No music source set. '
+        'Start playing the current song in playlist.',
+      );
       await _playCurrentSongInPlaylist();
       return;
     }

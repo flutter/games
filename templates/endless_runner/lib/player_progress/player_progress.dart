@@ -8,7 +8,7 @@ import 'persistence/player_progress_persistence.dart';
 /// Encapsulates the player's progress.
 class PlayerProgress extends ChangeNotifier {
   PlayerProgress({PlayerProgressPersistence? store})
-      : _store = store ?? LocalStoragePlayerProgressPersistence() {
+    : _store = store ?? LocalStoragePlayerProgressPersistence() {
     unawaited(getLatestFromStore());
   }
 
