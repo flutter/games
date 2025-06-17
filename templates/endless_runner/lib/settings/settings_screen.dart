@@ -25,9 +25,7 @@ class SettingsScreen extends StatelessWidget {
           children: [
             Expanded(
               child: ConstrainedBox(
-                constraints: const BoxConstraints(
-                  maxWidth: 600,
-                ),
+                constraints: const BoxConstraints(maxWidth: 600),
                 child: ListView(
                   children: [
                     _gap,
@@ -41,9 +39,7 @@ class SettingsScreen extends StatelessWidget {
                       ),
                     ),
                     _gap,
-                    const _NameChangeLine(
-                      'Name',
-                    ),
+                    const _NameChangeLine('Name'),
                     ValueListenableBuilder<bool>(
                       valueListenable: settings.soundsOn,
                       builder: (context, soundsOn, child) => _SettingsLine(
@@ -69,7 +65,8 @@ class SettingsScreen extends StatelessWidget {
                         final messenger = ScaffoldMessenger.of(context);
                         messenger.showSnackBar(
                           const SnackBar(
-                              content: Text('Player progress has been reset.')),
+                            content: Text('Player progress has been reset.'),
+                          ),
                         );
                       },
                     ),
@@ -109,11 +106,13 @@ class _NameChangeLine extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(title,
-                style: const TextStyle(
-                  fontFamily: 'Press Start 2P',
-                  fontSize: 20,
-                )),
+            Text(
+              title,
+              style: const TextStyle(
+                fontFamily: 'Press Start 2P',
+                fontSize: 20,
+              ),
+            ),
             const Spacer(),
             ValueListenableBuilder(
               valueListenable: settings.playerName,

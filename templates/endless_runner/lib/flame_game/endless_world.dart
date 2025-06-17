@@ -79,10 +79,8 @@ class EndlessWorld extends World with TapCallbacks, HasGameReference {
 
     add(
       SpawnComponent(
-        factory: (_) => Obstacle.random(
-          random: _random,
-          canSpawnTall: level.canSpawnTall,
-        ),
+        factory: (_) =>
+            Obstacle.random(random: _random, canSpawnTall: level.canSpawnTall),
         period: 5,
         area: Rectangle.fromPoints(
           Vector2(size.x / 2, groundLevel),
@@ -111,7 +109,8 @@ class EndlessWorld extends World with TapCallbacks, HasGameReference {
     // the player passed the level.
     scoreNotifier.addListener(() {
       if (scoreNotifier.value >= level.winScore) {
-        final levelTime = (DateTime.now().millisecondsSinceEpoch -
+        final levelTime =
+            (DateTime.now().millisecondsSinceEpoch -
                 timeStarted.millisecondsSinceEpoch) /
             1000;
 

@@ -45,11 +45,7 @@ void main() {
     'smoke test flame game',
     () {
       return EndlessRunner(
-        level: (
-          number: 1,
-          winScore: 3,
-          canSpawnTall: false,
-        ),
+        level: (number: 1, winScore: 3, canSpawnTall: false),
         playerProgress: PlayerProgress(
           store: MemoryOnlyPlayerProgressPersistence(),
         ),
@@ -77,8 +73,10 @@ void main() {
 
 class _MockAudioController implements AudioController {
   @override
-  void attachDependencies(AppLifecycleStateNotifier lifecycleNotifier,
-      SettingsController settingsController) {}
+  void attachDependencies(
+    AppLifecycleStateNotifier lifecycleNotifier,
+    SettingsController settingsController,
+  ) {}
 
   @override
   void dispose() {}
