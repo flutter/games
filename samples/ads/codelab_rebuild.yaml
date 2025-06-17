@@ -11,10 +11,10 @@ steps:
     rm: test/widget_test.dart
   - name: Patch android/app/src/main/AndroidManifest.xml
     path: android/app/src/main/AndroidManifest.xml
-    patch-u: | 
+    patch-u: |
       --- b/samples/ads/android/app/src/main/AndroidManifest.xml
       +++ a/samples/ads/android/app/src/main/AndroidManifest.xml
-      @@ -29,5 +29,10 @@
+      @@ -30,6 +30,11 @@
                <meta-data
                    android:name="flutterEmbedding"
                    android:value="2" />
@@ -24,7 +24,8 @@ steps:
       +            android:name="com.google.android.gms.ads.APPLICATION_ID"
       +            android:value="ca-app-pub-3940256099942544~3347511713"/>
            </application>
-       </manifest>
+           <!-- Required to query activities that can process text, see:
+                https://developer.android.com/training/package-visibility and
   - name: Patch ios/Runner/Info.plist
     path: ios/Runner/Info.plist
     patch-u: |
