@@ -2,7 +2,7 @@
 name: Multiplayer sample rebuild
 steps:
   - name: Remove runners
-    rmdirs: 
+    rmdirs:
       - android
       - ios
       - linux
@@ -12,21 +12,46 @@ steps:
     flutter: create --org com.example --project-name card --platforms android,ios,linux,macos,web .
   - name: Remove test/widget_test.dart
     rm: test/widget_test.dart
-  - name: Patch android/build.gradle
-    path: android/build.gradle
+  - name: Patch android/app/build.gradle.kts
+    path: android/app/build.gradle.kts
     patch-u: |
-      --- b/samples/multiplayer/android/build.gradle
-      +++ a/samples/multiplayer/android/build.gradle
-      @@ -6,6 +6,9 @@ buildscript {
-           }
-       
-           dependencies {
-      +        // START: FlutterFire Configuration
-      +        classpath 'com.google.gms:google-services:4.3.10'
-      +        // END: FlutterFire Configuration
-               classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-           }
+      --- a/samples/multiplayer/android/app/build.gradle.kts
+      +++ b/samples/multiplayer/android/app/build.gradle.kts
+      @@ -1,5 +1,8 @@
+       plugins {
+           id("com.android.application")
+      +    // START: FlutterFire Configuration
+      +    id("com.google.gms.google-services")
+      +    // END: FlutterFire Configuration
+           id("kotlin-android")
+           // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
+           id("dev.flutter.flutter-gradle-plugin")
+  - name: Patch android/settings.gradle.kts
+    path: android/settings.gradle.kts
+    patch-u: |
+      --- a/samples/multiplayer/android/settings.gradle.kts
+      +++ b/samples/multiplayer/android/settings.gradle.kts
+      @@ -19,6 +19,9 @@ pluginManagement {
+       plugins {
+           id("dev.flutter.flutter-plugin-loader") version "1.0.0"
+           id("com.android.application") version "8.7.3" apply false
+      +    // START: FlutterFire Configuration
+      +    id("com.google.gms.google-services") version("4.3.15") apply false
+      +    // END: FlutterFire Configuration
+           id("org.jetbrains.kotlin.android") version "2.1.0" apply false
        }
+  - name: Patch ios/Podfile
+    path: ios/Podfile
+    patch-u: |
+      --- b/samples/multiplayer/ios/Podfile
+      +++ a/samples/multiplayer/ios/Podfile
+      @@ -1,5 +1,4 @@
+      -# Uncomment this line to define a global platform for your project
+      -# platform :ios, '12.0'
+      +platform :ios, '13.0'
+       
+       # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
+       ENV['COCOAPODS_DISABLE_STATS'] = 'true'
   - name: Add android/app/google-services.json
     path: android/app/google-services.json
     replace-contents: |
