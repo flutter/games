@@ -52,9 +52,7 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
     final palette = context.watch<Palette>();
 
     return MultiProvider(
-      providers: [
-        Provider.value(value: _boardState),
-      ],
+      providers: [Provider.value(value: _boardState)],
       child: IgnorePointer(
         // Ignore all input during the celebration animation.
         ignoring: _duringCelebration,
@@ -99,9 +97,7 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                 child: Visibility(
                   visible: _duringCelebration,
                   child: IgnorePointer(
-                    child: Confetti(
-                      isStopped: !_duringCelebration,
-                    ),
+                    child: Confetti(isStopped: !_duringCelebration),
                   ),
                 ),
               ),
@@ -127,8 +123,10 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
 
     final firestore = context.read<FirebaseFirestore?>();
     if (firestore == null) {
-      _log.warning("Firestore instance wasn't provided. "
-          'Running without _firestoreController.');
+      _log.warning(
+        "Firestore instance wasn't provided. "
+        'Running without _firestoreController.',
+      );
     } else {
       _firestoreController = FirestoreController(
         instance: firestore,

@@ -16,8 +16,9 @@ class PlayingCard {
 
   factory PlayingCard.fromJson(Map<String, dynamic> json) {
     return PlayingCard(
-      CardSuit.values
-          .singleWhere((e) => e.internalRepresentation == json['suit']),
+      CardSuit.values.singleWhere(
+        (e) => e.internalRepresentation == json['suit'],
+      ),
       json['value'] as int,
     );
   }
@@ -39,9 +40,9 @@ class PlayingCard {
   }
 
   Map<String, dynamic> toJson() => {
-        'suit': suit.internalRepresentation,
-        'value': value,
-      };
+    'suit': suit.internalRepresentation,
+    'value': value,
+  };
 
   @override
   String toString() {

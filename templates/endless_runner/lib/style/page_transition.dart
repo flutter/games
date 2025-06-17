@@ -12,11 +12,7 @@ CustomTransitionPage<T> buildPageTransition<T>({
   return CustomTransitionPage<T>(
     child: child,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      return _PageReveal(
-        animation: animation,
-        color: color,
-        child: child,
-      );
+      return _PageReveal(animation: animation, color: color, child: child);
     },
     key: key,
     name: name,
@@ -59,14 +55,9 @@ class _PageReveal extends StatelessWidget {
               reverseCurve: Curves.easeOutCubic,
             ),
           ),
-          child: Container(
-            color: color,
-          ),
+          child: Container(color: color),
         ),
-        FadeTransition(
-          opacity: _fadeTween.animate(animation),
-          child: child,
-        ),
+        FadeTransition(opacity: _fadeTween.animate(animation), child: child),
       ],
     );
   }
