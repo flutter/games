@@ -21,7 +21,11 @@ steps:
       <?xml version="1.0" encoding="utf-8"?>
       <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
         <background android:drawable="@color/ic_launcher_background"/>
-        <foreground android:drawable="@drawable/ic_launcher_foreground"/>
+        <foreground>
+            <inset
+                android:drawable="@drawable/ic_launcher_foreground"
+                android:inset="16%" />
+        </foreground>
       </adaptive-icon>
   - name: Add colors.xml
     path: android/app/src/main/res/values/colors.xml
@@ -30,6 +34,35 @@ steps:
       <resources>
           <color name="ic_launcher_background">#FFFFFF</color>
       </resources>
+  - name: Patch android/app/src/main/AndroidManifest.xml
+    path: android/app/src/main/AndroidManifest.xml
+    patch-u: |
+      --- a/templates/basic/android/app/src/main/AndroidManifest.xml
+      +++ b/templates/basic/android/app/src/main/AndroidManifest.xml
+      @@ -20,6 +20,10 @@
+                     android:name="io.flutter.embedding.android.NormalTheme"
+                     android:resource="@style/NormalTheme"
+                     />
+      +            <!-- Specifies the version of the game template to understand template usage. -->
+      +            <meta-data
+      +                android:name="io.flutter.plugins.googlemobileads.FLUTTER_GAME_TEMPLATE_VERSION"
+      +                android:value="1.0.0"/>
+                   <intent-filter>
+                       <action android:name="android.intent.action.MAIN"/>
+                       <category android:name="android.intent.category.LAUNCHER"/>
+  - name: Patch ios/Runner/Info.plist
+    path: ios/Runner/Info.plist
+    patch-u: |
+      --- a/templates/basic/ios/Runner/Info.plist
+      +++ b/templates/basic/ios/Runner/Info.plist
+      @@ -45,5 +45,7 @@
+       	<true/>
+       	<key>UIApplicationSupportsIndirectInputEvents</key>
+       	<true/>
+      +	<key>FLTGameTemplateVersion</key>
+      +    <string>1.0.0</string>
+       </dict>
+       </plist>
   - name: Add android/app/src/main/res/mipmap-mdpi/ic_launcher.png
     path: android/app/src/main/res/mipmap-mdpi/ic_launcher.png
     base64-contents: |
