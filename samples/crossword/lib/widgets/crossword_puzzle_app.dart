@@ -27,26 +27,29 @@ class CrosswordPuzzleApp extends StatelessWidget {
           title: const Text('Crossword Puzzle'),
         ),
         body: SafeArea(
-          child: Consumer(builder: (context, ref, _) {
-            final workQueueAsync = ref.watch(workQueueProvider);
-            final puzzleSolved =
-                ref.watch(puzzleProvider.select((puzzle) => puzzle.solved));
+          child: Consumer(
+            builder: (context, ref, _) {
+              final workQueueAsync = ref.watch(workQueueProvider);
+              final puzzleSolved = ref.watch(
+                puzzleProvider.select((puzzle) => puzzle.solved),
+              );
 
-            return workQueueAsync.when(
-              data: (workQueue) {
-                if (puzzleSolved) {
-                  return const PuzzleCompletedWidget();
-                }
-                if (workQueue.isCompleted &&
-                    workQueue.crossword.characters.isNotEmpty) {
-                  return const CrosswordPuzzleWidget();
-                }
-                return const CrosswordGeneratorWidget();
-              },
-              loading: () => const Center(child: CircularProgressIndicator()),
-              error: (error, stackTrace) => Center(child: Text('$error')),
-            );
-          }),
+              return workQueueAsync.when(
+                data: (workQueue) {
+                  if (puzzleSolved) {
+                    return const PuzzleCompletedWidget();
+                  }
+                  if (workQueue.isCompleted &&
+                      workQueue.crossword.characters.isNotEmpty) {
+                    return const CrosswordPuzzleWidget();
+                  }
+                  return const CrosswordGeneratorWidget();
+                },
+                loading: () => const Center(child: CircularProgressIndicator()),
+                error: (error, stackTrace) => Center(child: Text('$error')),
+              );
+            },
+          ),
         ),
       ),
     );
@@ -67,19 +70,19 @@ class _EagerInitialization extends ConsumerWidget {
 class _CrosswordPuzzleAppMenu extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) => MenuAnchor(
-        menuChildren: [
-          for (final entry in CrosswordSize.values)
-            MenuItemButton(
-              onPressed: () => ref.read(sizeProvider.notifier).setSize(entry),
-              leadingIcon: entry == ref.watch(sizeProvider)
-                  ? const Icon(Icons.radio_button_checked_outlined)
-                  : const Icon(Icons.radio_button_unchecked_outlined),
-              child: Text(entry.label),
-            ),
-        ],
-        builder: (context, controller, child) => IconButton(
-          onPressed: () => controller.open(),
-          icon: const Icon(Icons.settings),
+    menuChildren: [
+      for (final entry in CrosswordSize.values)
+        MenuItemButton(
+          onPressed: () => ref.read(sizeProvider.notifier).setSize(entry),
+          leadingIcon: entry == ref.watch(sizeProvider)
+              ? const Icon(Icons.radio_button_checked_outlined)
+              : const Icon(Icons.radio_button_unchecked_outlined),
+          child: Text(entry.label),
         ),
-      );
+    ],
+    builder: (context, controller, child) => IconButton(
+      onPressed: () => controller.open(),
+      icon: const Icon(Icons.settings),
+    ),
+  );
 }

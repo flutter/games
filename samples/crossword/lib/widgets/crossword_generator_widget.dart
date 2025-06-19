@@ -56,8 +56,9 @@ class CrosswordGeneratorWidget extends ConsumerWidget {
             return AnimatedContainer(
               duration: Durations.extralong1,
               curve: Curves.easeInOut,
-              color:
-                  explorationCell ? colorScheme.primary : colorScheme.onPrimary,
+              color: explorationCell
+                  ? colorScheme.primary
+                  : colorScheme.onPrimary,
               child: Center(
                 child: AnimatedDefaultTextStyle(
                   duration: Durations.extralong1,
@@ -69,15 +70,14 @@ class CrosswordGeneratorWidget extends ConsumerWidget {
                         : colorScheme.primary,
                   ),
                   child: const Text(
-                      '•'), // https://www.compart.com/en/unicode/U+2022
+                    '•',
+                  ), // https://www.compart.com/en/unicode/U+2022
                 ),
               ),
             );
           }
 
-          return ColoredBox(
-            color: colorScheme.primaryContainer,
-          );
+          return ColoredBox(color: colorScheme.primaryContainer);
         },
       ),
     );
@@ -89,9 +89,11 @@ class CrosswordGeneratorWidget extends ConsumerWidget {
       foregroundDecoration: TableSpanDecoration(
         border: TableSpanBorder(
           leading: BorderSide(
-              color: Theme.of(context).colorScheme.onPrimaryContainer),
+            color: Theme.of(context).colorScheme.onPrimaryContainer,
+          ),
           trailing: BorderSide(
-              color: Theme.of(context).colorScheme.onPrimaryContainer),
+            color: Theme.of(context).colorScheme.onPrimaryContainer,
+          ),
         ),
       ),
     );
