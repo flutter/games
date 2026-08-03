@@ -41,10 +41,7 @@ class ResponsiveScreen extends StatelessWidget {
             children: [
               SafeArea(
                 bottom: false,
-                child: Padding(
-                  padding: padding,
-                  child: topMessageArea,
-                ),
+                child: Padding(padding: padding, child: topMessageArea),
               ),
               Expanded(
                 child: SafeArea(
@@ -59,9 +56,7 @@ class ResponsiveScreen extends StatelessWidget {
                 maintainBottomViewPadding: true,
                 child: Padding(
                   padding: padding,
-                  child: Center(
-                    child: rectangularMenuArea,
-                  ),
+                  child: Center(child: rectangularMenuArea),
                 ),
               ),
             ],
@@ -90,10 +85,7 @@ class ResponsiveScreen extends StatelessWidget {
                       bottom: false,
                       left: false,
                       maintainBottomViewPadding: true,
-                      child: Padding(
-                        padding: padding,
-                        child: topMessageArea,
-                      ),
+                      child: Padding(padding: padding, child: topMessageArea),
                     ),
                     Expanded(
                       child: SafeArea(
@@ -108,7 +100,7 @@ class ResponsiveScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

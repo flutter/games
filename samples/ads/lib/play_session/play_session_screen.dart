@@ -62,10 +62,8 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
         // Create and provide the [LevelState] object that will be used
         // by widgets below this one in the widget tree.
         ChangeNotifierProvider(
-          create: (context) => LevelState(
-            goal: widget.level.difficulty,
-            onWin: _playerWon,
-          ),
+          create: (context) =>
+              LevelState(goal: widget.level.difficulty, onWin: _playerWon),
         ),
       ],
       child: IgnorePointer(
@@ -115,9 +113,7 @@ class _PlaySessionScreenState extends State<PlaySessionScreen> {
                 child: Visibility(
                   visible: _duringCelebration,
                   child: IgnorePointer(
-                    child: Confetti(
-                      isStopped: !_duringCelebration,
-                    ),
+                    child: Confetti(isStopped: !_duringCelebration),
                   ),
                 ),
               ),

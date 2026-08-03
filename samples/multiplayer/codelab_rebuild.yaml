@@ -10,6 +10,20 @@ steps:
       - web
   - name: Flutter recreate
     flutter: create --org com.example --project-name card --platforms android,ios,linux,macos,web .
+  - name: Set minimum iOS deployment target
+    path: ios/Runner.xcodeproj/project.pbxproj
+    patch-u: |
+      --- a/ios/Runner.xcodeproj/project.pbxproj
+      +++ b/ios/Runner.xcodeproj/project.pbxproj
+      @@ -363,1 +363,1 @@
+      -				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+      +				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+      @@ -490,1 +490,1 @@
+      -				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+      +				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+      @@ -541,1 +541,1 @@
+      -				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+      +				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
   - name: Remove test/widget_test.dart
     rm: test/widget_test.dart
   - name: Patch android/app/build.gradle.kts
@@ -23,9 +37,9 @@ steps:
       +    // START: FlutterFire Configuration
       +    id("com.google.gms.google-services")
       +    // END: FlutterFire Configuration
-           id("kotlin-android")
            // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
            id("dev.flutter.flutter-gradle-plugin")
+       }
   - name: Patch android/settings.gradle.kts
     path: android/settings.gradle.kts
     patch-u: |
@@ -34,24 +48,12 @@ steps:
       @@ -19,6 +19,9 @@ pluginManagement {
        plugins {
            id("dev.flutter.flutter-plugin-loader") version "1.0.0"
-           id("com.android.application") version "8.7.3" apply false
+           id("com.android.application") version "9.0.1" apply false
       +    // START: FlutterFire Configuration
-      +    id("com.google.gms.google-services") version("4.3.15") apply false
+      +    id("com.google.gms.google-services") version("4.5.0") apply false
       +    // END: FlutterFire Configuration
-           id("org.jetbrains.kotlin.android") version "2.1.0" apply false
+           id("org.jetbrains.kotlin.android") version "2.3.20" apply false
        }
-  - name: Patch ios/Podfile
-    path: ios/Podfile
-    patch-u: |
-      --- b/samples/multiplayer/ios/Podfile
-      +++ a/samples/multiplayer/ios/Podfile
-      @@ -1,5 +1,4 @@
-      -# Uncomment this line to define a global platform for your project
-      -# platform :ios, '12.0'
-      +platform :ios, '13.0'
-       
-       # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
-       ENV['COCOAPODS_DISABLE_STATS'] = 'true'
   - name: Add android/app/google-services.json
     path: android/app/google-services.json
     replace-contents: |
@@ -158,7 +160,7 @@ steps:
       </plist>
   - name: Add GoogleService-Info.plist
     xcode-project-path: ios/Runner.xcodeproj
-    xcode-add-file: GoogleService-Info.plist
+    xcode-add-resource: GoogleService-Info.plist
   - name: Add macos/Runner/GoogleService-info.plist
     path: macos/Runner/GoogleService-info.plist
     replace-contents: |
@@ -194,4 +196,4 @@ steps:
       </plist>
   - name: Add GoogleService-Info.plist
     xcode-project-path: macos/Runner.xcodeproj
-    xcode-add-file: GoogleService-Info.plist
+    xcode-add-resource: GoogleService-Info.plist

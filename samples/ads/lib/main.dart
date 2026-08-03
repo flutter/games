@@ -63,8 +63,11 @@ class MyApp extends StatelessWidget {
           Provider(create: (context) => Palette()),
           ChangeNotifierProvider(create: (context) => PlayerProgress()),
           // Set up audio.
-          ProxyProvider2<AppLifecycleStateNotifier, SettingsController,
-              AudioController>(
+          ProxyProvider2<
+            AppLifecycleStateNotifier,
+            SettingsController,
+            AudioController
+          >(
             create: (context) => AudioController(),
             update: (context, lifecycleNotifier, settings, audio) {
               audio!.attachDependencies(lifecycleNotifier, settings);
@@ -75,36 +78,39 @@ class MyApp extends StatelessWidget {
             lazy: false,
           ),
         ],
-        child: Builder(builder: (context) {
-          final palette = context.watch<Palette>();
+        child: Builder(
+          builder: (context) {
+            final palette = context.watch<Palette>();
 
-          return MaterialApp.router(
-            title: 'My Flutter Game',
-            theme: ThemeData.from(
-              colorScheme: ColorScheme.fromSeed(
-                seedColor: palette.darkPen,
-                surface: palette.backgroundMain,
-              ),
-              textTheme: TextTheme(
-                bodyMedium: TextStyle(color: palette.ink),
-              ),
-              useMaterial3: true,
-            ).copyWith(
-              // Make buttons more fun.
-              filledButtonTheme: FilledButtonThemeData(
-                style: FilledButton.styleFrom(
-                  textStyle: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
+            return MaterialApp.router(
+              title: 'My Flutter Game',
+              theme:
+                  ThemeData.from(
+                    colorScheme: ColorScheme.fromSeed(
+                      seedColor: palette.darkPen,
+                      surface: palette.backgroundMain,
+                    ),
+                    textTheme: TextTheme(
+                      bodyMedium: TextStyle(color: palette.ink),
+                    ),
+                    useMaterial3: true,
+                  ).copyWith(
+                    // Make buttons more fun.
+                    filledButtonTheme: FilledButtonThemeData(
+                      style: FilledButton.styleFrom(
+                        textStyle: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ),
-            routeInformationProvider: router.routeInformationProvider,
-            routeInformationParser: router.routeInformationParser,
-            routerDelegate: router.routerDelegate,
-          );
-        }),
+              routeInformationProvider: router.routeInformationProvider,
+              routeInformationParser: router.routeInformationParser,
+              routerDelegate: router.routerDelegate,
+            );
+          },
+        ),
       ),
     );
   }
