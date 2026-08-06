@@ -178,8 +178,7 @@ class _PaperSnipping {
 
   final paint = Paint()..style = PaintingStyle.fill;
 
-  _PaperSnipping({required this.frontColor, required Size bounds})
-    : _bounds = bounds;
+  _PaperSnipping({required this.frontColor, required this._bounds});
 
   void draw(Canvas canvas) {
     if (cosA > 0) {
