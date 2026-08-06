@@ -11,6 +11,20 @@ steps:
       - windows
   - name: Flutter recreate
     flutter: create --org com.example --project-name card .
+  - name: Set minimum iOS deployment target
+    path: ios/Runner.xcodeproj/project.pbxproj
+    patch-u: |
+      --- a/ios/Runner.xcodeproj/project.pbxproj
+      +++ b/ios/Runner.xcodeproj/project.pbxproj
+      @@ -363,1 +363,1 @@
+      -				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+      +				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+      @@ -490,1 +490,1 @@
+      -				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+      +				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+      @@ -541,1 +541,1 @@
+      -				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+      +				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
   - name: Remove test/widget_test.dart
     rm: test/widget_test.dart
   - name: Patch android/app/src/main/AndroidManifest.xml
