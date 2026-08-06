@@ -16,10 +16,7 @@ class MyBannerAdWidget extends StatefulWidget {
       // ... or this one on iOS.
       : 'ca-app-pub-3940256099942544/2934735716';
 
-  MyBannerAdWidget({
-    super.key,
-    this.adSize = AdSize.banner,
-  });
+  MyBannerAdWidget({super.key, this.adSize = AdSize.banner});
 
   @override
   State<MyBannerAdWidget> createState() => _MyBannerAdWidgetState();
